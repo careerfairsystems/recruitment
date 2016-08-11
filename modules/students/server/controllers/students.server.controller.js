@@ -96,7 +96,7 @@ exports.list = function(req, res) {
  * List of Active Students (has assignment now in the fair)
  */
 exports.active = function(req, res) { 
-  Student.find({ a: { '$ne' : '' } }).sort('-created').populate('user', 'displayName').exec(function(err, students) {
+  Student.find({ assignment: { '$ne' : "" } }).sort('-created').populate('user', 'displayName').exec(function(err, students) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
