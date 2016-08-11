@@ -20,6 +20,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/students/:studentId',
       permissions: '*'
+    }, {
+      resources: '/api/students/active',
+      permissions: '*'
     }]
   }, {
     roles: ['user'],
@@ -29,6 +32,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/students/:studentId',
       permissions: ['get']
+    }, {
+      resources: '/api/students/active',
+      permissions: 'get'
     }]
   }, {
     roles: ['guest'],
@@ -38,6 +44,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/students/:studentId',
       permissions: ['get']
+    }, {
+      resources: '/api/students/active',
+      permissions: 'get'
     }]
   }]);
 };
