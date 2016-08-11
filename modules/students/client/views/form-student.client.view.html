@@ -5,12 +5,28 @@
   <div class="col-md-12">
     <form name="vm.form.studentForm" class="form-horizontal" ng-submit="vm.save(vm.form.studentForm.$valid)" novalidate>
       <fieldset>
+        <!-- Name -->
         <div class="form-group" show-errors>
           <label class="control-label" for="name">Name</label>
           <input name="name" type="text" ng-model="vm.student.name" id="name" class="form-control" placeholder="Name" required>
           <div ng-messages="vm.form.studentForm.name.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Student name is required.</p>
           </div>
+        </div>
+        <!-- Assignment -->
+        <div class="form-group" show-errors>
+          <label class="control-label" for="assignment">Assignment</label>
+          <input name="assignment" type="text" ng-model="vm.student.assignment" id="assignment" class="form-control" placeholder="Assignment" required>
+        </div>
+        <!-- Education -->
+        <div class="form-group" show-errors>
+          <label class="control-label" for="education">Education</label>
+          <input name="education" type="text" ng-model="vm.student.education" id="education" class="form-control" placeholder="Education" required>
+        </div>
+        <!-- Profile -->
+        <div class="form-group" show-errors>
+          <label class="control-label" for="profile">Link to profile-img</label>
+          <input name="profile" type="text" ng-model="vm.student.profile" id="profile" class="form-control" placeholder="http://..." required>
         </div>
         <div class="form-group">
           <button type="submit" class="btn btn-default">{{vm.student._id ? 'Update' : 'Create'}}</button>
