@@ -19,19 +19,16 @@ var StudentSchema = new Schema({
   assignment: {
     type: String,
     default: '',
-    required: 'Please fill Student assignment',
     trim: true
   },
   education: {
     type: String,
     default: '',
-    required: 'Please fill Student education',
     trim: true
   },
   profile: {
     type: String,
     default: '',
-    required: 'Please fill link to student profile',
     trim: true
   },
   created: {
