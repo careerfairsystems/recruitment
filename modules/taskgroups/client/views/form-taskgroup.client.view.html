@@ -1,0 +1,82 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.taskgroup._id ? 'Edit Taskgroup' : 'New Taskgroup'}}</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="vm.form.taskgroupForm" class="form-horizontal" ng-submit="vm.save(vm.form.taskgroupForm.$valid)" novalidate>
+      <fieldset>
+        <!-- Name -->
+        <div class="form-group" show-errors>
+          <label class="control-label" for="name">Name</label>
+          <input name="name" type="text" ng-model="vm.taskgroup.name" id="name" class="form-control" placeholder="Name" required>
+          <div ng-messages="vm.form.taskgroupForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Taskgroup name is required.</p>
+          </div>
+        </div>
+        <!-- Description -->
+        <div class="form-group">
+          <label class="control-label" for="description">Description*</label>
+          <textarea name="description" ng-model="vm.taskgroup.description" id="description" class="form-control" required></textarea>
+        </div>
+        <!-- Tasks -->
+        <div class="form-group">
+          <h2>Tasks</h2>
+          <table class="table table-bordered table-hover table-condensed">
+            <tr style="font-weight: bold">
+              <td style="width:30%">Name</td>
+              <td style="width:50%">Description</td>
+              <td style="width:15%">Quantity</td>
+              <td style="width:5%"></td>
+            </tr>
+            <tr ng-repeat="task in vm.taskgroup.tasks track by $index">
+              <td>
+                <div ng-show="!vm.taskgroup.tasks[$index].edit">
+                  <span>{{ task.name }}</span>
+                </div>
+                <div ng-show="vm.taskgroup.tasks[$index].edit">
+                  <input type="string" ng-model="task.name" id="{{ $index }}-name-task" class="form-control" required>
+                </div>
+              </td>
+              <td>
+                <div ng-show="!vm.taskgroup.tasks[$index].edit">
+                  <span>{{ task.description }}</span>
+                </div>
+                <div ng-show="vm.taskgroup.tasks[$index].edit">
+                  <input type="string" ng-model="task.description" id="{{ $index }}-des-task" class="form-control" required>
+                </div>
+              </td>
+              <td>
+                <div ng-show="!vm.taskgroup.tasks[$index].edit">
+                  <span>{{ task.quantity }}</span>
+                </div>
+                <div ng-show="vm.taskgroup.tasks[$index].edit">
+                  <input type="number" ng-model="task.quantity" id="{{ $index }}-quantity-task" class="form-control" required>
+                </div>
+              </td>
+              <td style="white-space: nowrap">
+                <div class="buttons" ng-show="vm.taskgroup.tasks[$index].edit">
+                  <button type="button" class="btn btn-primary" ng-click="saveTask($index)"><i class="glyphicon glyphicon-ok"></i></button>
+                  <button type="button" class="btn btn-danger" ng-click="deleteTask($index)"><i class="glyphicon glyphicon-trash"></i></button>
+                </div>  
+                <div class="buttons" ng-show="!vm.taskgroup.tasks[$index].edit">
+                  <button type="button" class="btn btn-primary" ng-click="vm.taskgroup.tasks[$index].edit = true;"><i class="glyphicon glyphicon-edit"></i></a>
+                </div>  
+              </td>
+            </tr>
+          </table>
+          <p class="text-danger" ng-bind="assignmenterror"></p>
+          <button ng-click="addTask(vm.taskgroup.tasks)" type="button" class="btn btn-warning">Add task</button>
+        </div>
+
+
+        <!-- Submit buttons -->
+        <div class="form-group">
+          <button type="submit" class="btn btn-default pull-right">{{vm.taskgroup._id ? 'Update' : 'Create'}}</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>
