@@ -18,6 +18,15 @@
         url: '/submitted',
         templateUrl: 'modules/taskapplications/client/views/submitted-taskapplication.client.view.html'
       })
+      .state('taskapplications.mylist', {
+        url: '',
+        templateUrl: 'modules/taskapplications/client/views/list-taskapplications.client.view.html',
+        controller: 'MyTaskapplicationsListController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Taskapplications List'
+        }
+      })
       .state('taskapplications.list', {
         url: '',
         templateUrl: 'modules/taskapplications/client/views/list-taskapplications.client.view.html',

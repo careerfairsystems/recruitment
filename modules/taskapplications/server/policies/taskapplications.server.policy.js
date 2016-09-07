@@ -20,6 +20,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/taskapplications/:taskapplicationId',
       permissions: '*'
+    }, {
+      resources: '/api/taskapplications/mylist/:userId',
+      permissions: '*'
     }]
   }, {
     roles: ['user'],
@@ -28,6 +31,9 @@ exports.invokeRolesPolicies = function () {
       permissions: ['get', 'post']
     }, {
       resources: '/api/taskapplications/:taskapplicationId',
+      permissions: ['get']
+    }, {
+      resources: '/api/taskapplications/mylist/:userId',
       permissions: ['get']
     }]
   }, {
@@ -38,6 +44,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/taskapplications/:taskapplicationId',
       permissions: ['get']
+    }, {
+      resources: '/api/taskapplications/mylist/:userId',
+      permissions: ['']
     }]
   }]);
 };

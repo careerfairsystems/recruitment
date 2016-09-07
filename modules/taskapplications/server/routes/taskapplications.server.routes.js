@@ -8,6 +8,9 @@ var taskapplicationsPolicy = require('../policies/taskapplications.server.policy
 
 module.exports = function(app) {
   // Taskapplications Routes
+  app.route('/api/taskapplications/mylist/:userId').all(taskapplicationsPolicy.isAllowed)
+    .get(taskapplications.mylist);
+  
   app.route('/api/taskapplications').all(taskapplicationsPolicy.isAllowed)
     .get(taskapplications.list)
     .post(taskapplications.create);

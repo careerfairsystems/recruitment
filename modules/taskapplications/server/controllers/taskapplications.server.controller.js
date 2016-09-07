@@ -78,6 +78,21 @@ exports.delete = function(req, res) {
 };
 
 /**
+ * List of the users Taskapplications
+ */
+exports.mylist = function(req, res) { 
+  var req_user = req.params.userId;
+  Taskapplication.find({ user: req_user }).sort('-created').populate('user', 'displayName').exec(function(err, taskapplications) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.jsonp(taskapplications);
+    }
+  });
+};
+/**
  * List of Taskapplications
  */
 exports.list = function(req, res) { 

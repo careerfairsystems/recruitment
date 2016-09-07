@@ -13,7 +13,14 @@
       title: 'Taskapplications',
       state: 'taskapplications',
       type: 'dropdown',
-      roles: ['*']
+      roles: ['user']
+    });
+
+    // Add the dropdown list item
+    Menus.addSubMenuItem('topbar', 'taskapplications', {
+      title: 'My applications',
+      state: 'taskapplications.mylist',
+      roles: ['admin']
     });
 
     // Add the dropdown list item
