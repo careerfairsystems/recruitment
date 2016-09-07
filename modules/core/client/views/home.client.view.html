@@ -1,16 +1,45 @@
 <section ng-controller="HomeController">
   <div class="jumbotron text-center">
     <div class="row">
+      <h2>ARKAD RECRUITMENT</h2>
       <p class="lead">
-        Open-Source Full-Stack Solution For Recruitments in Career fairs
-      </p>
-    </div>
-    <div class="row">
-      <p>
-        <a class="btn btn-primary btn-lg" href="https://github.com/careerfairsystems/" target="_blank">Learn more</a>
+        Want to be part of southern Swedens biggest career fair?
       </p>
     </div>
   </div>
+  <div class="section" data-ng-show="vm.activeTaskgroup">
+    <h2 data-ng-bind="vm.activeTaskgroup.name"></h2>
+    <p ng-bind-html="vm.description"></p> 
+
+    <h3>Open positions</h3>
+    <table class="table  table-condensed">
+      <tr style="font-weight: bold">
+        <td style="width:20%">Position</td>
+        <td style="width:70%">Description</td>
+        <td style="width:10%">Nbr</td>
+      </tr>
+      <tr ng-repeat="task in vm.activeTaskgroup.tasks">
+        <td>
+          <span>{{ task.name }}</span>
+        </td>
+        <td>
+          <span>{{ task.description }}</span>
+        </td>
+        <td>
+          <span>{{ task.quantity }}</span>
+        </td>
+      </tr>
+    </table>
+    
+    <a class="btn btn-primary btn-lg text-center" data-ui-sref="taskapplications.create({ taskgroupId: vm.activeTaskgroup._id })">Apply now</a>
+    
+    
+  </div>
+  <hr>
+  <p>
+    Any questions please contact <a href="mailto:recruitment.arkad@tlth.se">recruitment.arkad@tlth.se</a>
+  </p>
+
   <br>Enjoy &amp; Keep Us Updated,
   <br>The Career Fair Team.
 </section>
