@@ -13,13 +13,14 @@
       title: 'Taskgroups',
       state: 'taskgroups',
       type: 'dropdown',
-      roles: ['*']
+      roles: ['admin']
     });
 
     // Add the dropdown list item
     Menus.addSubMenuItem('topbar', 'taskgroups', {
       title: 'List Taskgroups',
-      state: 'taskgroups.list'
+      state: 'taskgroups.list',
+      roles: ['admin']
     });
 
     // Add the dropdown create item
