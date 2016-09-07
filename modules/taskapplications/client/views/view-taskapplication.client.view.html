@@ -1,11 +1,74 @@
 <section>
   <div class="page-header">
-    <h1 data-ng-bind="vm.taskapplication.name"></h1>
+
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+        <!-- Name -->
+        <h1 data-ng-bind="vm.taskapplication.name"></h1>
+        <div class="row">
+          <!-- Program -->
+          <label for="program" class="col-sm-2">Program</label>
+          <div class="col-sm-10">
+            <p data-ng-bind="vm.taskapplication.program"></p>
+          </div>
+        </div>
+        <div class="row">
+          <!-- Email -->
+          <label for="email" class="col-sm-2">Email</label>
+          <div class="col-sm-10">
+            <p data-ng-bind="vm.taskapplication.email"></p>
+          </div>
+        </div>
+        <div class="row">
+          <!-- Phone -->
+          <label for="phone" class="col-sm-2">Phone</label>
+          <div class="col-sm-10">
+            <p data-ng-bind="vm.taskapplication.phone"></p>
+          </div>
+        </div>
+        <div class="row">
+          <!-- Foodpref -->
+          <label for="foodpref" class="col-sm-2">Foodpref</label>
+          <div class="col-sm-10">
+            <p data-ng-bind="vm.taskapplication.foodpref"></p>
+          </div>
+        </div>
+        <div class="row">
+          <!-- First choice -->
+          <label for="firstchoice" class="col-sm-2">First choice</label>
+          <div class="col-sm-10">
+            <p data-ng-bind="vm.taskapplication.choices[0].choice"></p>
+          </div>
+        </div>
+        <div class="row">
+          <!-- Second choice -->
+          <label for="secondchoice" class="col-sm-2">Second choice</label>
+          <div class="col-sm-10">
+            <p data-ng-bind="vm.taskapplication.choices[1].choice"></p>
+          </div>
+        </div>
+        <div class="row">
+          <!-- Third choice -->
+          <label for="thirdchoice" class="col-sm-2">Third choice</label>
+          <div class="col-sm-10">
+            <p data-ng-bind="vm.taskapplication.choices[2].choice"></p>
+          </div>
+        </div>
+        <div class="row">
+          <!-- Motivation -->
+          <label for="motivation" class="col-sm-2">Motivation</label>
+          <div class="col-sm-10">
+            <textarea rows="5" class="form-control" data-ng-bind="vm.taskapplication.motivation" readonly></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
   <div class="pull-right"
        data-ng-show="vm.taskapplication.isCurrentUserOwner">
     <a class="btn btn-primary"
-       data-ui-sref="taskapplications.edit({ taskapplicationId: vm.taskapplication._id })">
+       data-ui-sref="taskapplications.edit({ taskapplicationId: vm.taskapplication._id, taskgroupId: vm.taskapplication.taskgroup })">
       <i class="glyphicon glyphicon-edit"></i>
     </a>
     <a class="btn btn-primary" data-ng-click="vm.remove()">

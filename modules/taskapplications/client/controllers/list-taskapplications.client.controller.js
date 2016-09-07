@@ -10,6 +10,8 @@
   function TaskapplicationsListController(TaskapplicationsService) {
     var vm = this;
 
-    vm.taskapplications = TaskapplicationsService.query();
+    vm.taskapplications = TaskapplicationsService.query(function(data) {
+      //console.log(data);
+    });
   }
 })();

@@ -19,14 +19,8 @@
     // Add the dropdown list item
     Menus.addSubMenuItem('topbar', 'taskapplications', {
       title: 'List Taskapplications',
-      state: 'taskapplications.list'
-    });
-
-    // Add the dropdown create item
-    Menus.addSubMenuItem('topbar', 'taskapplications', {
-      title: 'Create Taskapplication',
-      state: 'taskapplications.create',
-      roles: ['user']
+      state: 'taskapplications.list',
+      roles: ['admin']
     });
   }
 })();

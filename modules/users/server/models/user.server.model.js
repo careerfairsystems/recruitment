@@ -59,6 +59,18 @@ var UserSchema = new Schema({
     lowercase: true,
     trim: true
   },
+  program: {
+    type: String,
+    trim: true
+  },
+  phone: {
+    type: String,
+    trim: true
+  },
+  foodpref: {
+    type: String,
+    trim: true
+  },
   password: {
     type: String,
     default: ''

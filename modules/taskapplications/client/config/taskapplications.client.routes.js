@@ -14,6 +14,10 @@
         url: '/taskapplications',
         template: '<ui-view/>'
       })
+      .state('taskapplications.submitted', {
+        url: '/submitted',
+        templateUrl: 'modules/taskapplications/client/views/submitted-taskapplication.client.view.html'
+      })
       .state('taskapplications.list', {
         url: '',
         templateUrl: 'modules/taskapplications/client/views/list-taskapplications.client.view.html',
@@ -24,12 +28,13 @@
         }
       })
       .state('taskapplications.create', {
-        url: '/create',
+        url: '/create/:taskgroupId',
         templateUrl: 'modules/taskapplications/client/views/form-taskapplication.client.view.html',
         controller: 'TaskapplicationsController',
         controllerAs: 'vm',
         resolve: {
-          taskapplicationResolve: newTaskapplication
+          taskapplicationResolve: newTaskapplication,
+          taskgroupResolve: getTaskgroup
         },
         data: {
           roles: ['user', 'admin'],
@@ -37,12 +42,13 @@
         }
       })
       .state('taskapplications.edit', {
-        url: '/:taskapplicationId/edit',
+        url: '/:taskapplicationId/:taskgroupId/edit',
         templateUrl: 'modules/taskapplications/client/views/form-taskapplication.client.view.html',
         controller: 'TaskapplicationsController',
         controllerAs: 'vm',
         resolve: {
-          taskapplicationResolve: getTaskapplication
+          taskapplicationResolve: getTaskapplication,
+          taskgroupResolve: getTaskgroup
         },
         data: {
           roles: ['user', 'admin'],
@@ -50,17 +56,26 @@
         }
       })
       .state('taskapplications.view', {
-        url: '/:taskapplicationId',
+        url: '/:taskapplicationId/:taskgroupId',
         templateUrl: 'modules/taskapplications/client/views/view-taskapplication.client.view.html',
         controller: 'TaskapplicationsController',
         controllerAs: 'vm',
         resolve: {
-          taskapplicationResolve: getTaskapplication
+          taskapplicationResolve: getTaskapplication,
+          taskgroupResolve: getTaskgroup
         },
         data:{
           pageTitle: 'Taskapplication {{ articleResolve.name }}'
         }
       });
+  }
+
+  getTaskgroup.$inject = ['$stateParams', 'TaskgroupsService'];
+
+  function getTaskgroup($stateParams, TaskgroupsService) {
+    return TaskgroupsService.get({
+      taskgroupId: $stateParams.taskgroupId
+    }).$promise;
   }
 
   getTaskapplication.$inject = ['$stateParams', 'TaskapplicationsService'];
