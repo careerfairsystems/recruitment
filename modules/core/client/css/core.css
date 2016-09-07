@@ -1,5 +1,6 @@
 body {
-  background: url("/modules/core/client/img/bakground-image.jpg"); }
+  background: url("/modules/core/client/img/bakground-image.jpg");
+  background-attachment: fixed; }
 
 @media screen and (max-width: 768px) {
   .navbar nav {
