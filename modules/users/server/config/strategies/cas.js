@@ -14,7 +14,6 @@ module.exports = function (config) {
     serviceURL: '/api/auth/cas/callback',
     passReqToCallback: true
   }, function(req, profile, done) {
-     
     // Save the user OAuth profile
     var providerUserProfile = {
       displayName: profile,
