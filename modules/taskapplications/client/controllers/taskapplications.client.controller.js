@@ -1,3 +1,4 @@
+/* global $:false */
 (function () {
   'use strict';
 
@@ -6,9 +7,9 @@
     .module('taskapplications')
     .controller('TaskapplicationsController', TaskapplicationsController);
 
-  TaskapplicationsController.$inject = ['$scope', '$state', 'Authentication', 'taskapplicationResolve', '$stateParams', 'taskgroupResolve', 'Users', 'CompaniesService'];
+  TaskapplicationsController.$inject = ['$scope', '$state', 'Authentication', 'taskapplicationResolve', '$stateParams', 'taskgroupResolve', 'Users', 'CompaniesService', '$timeout'];
 
-  function TaskapplicationsController ($scope, $state, Authentication, taskapplication, $stateParams, taskgroupResolve, Users, CompaniesService) {
+  function TaskapplicationsController ($scope, $state, Authentication, taskapplication, $stateParams, taskgroupResolve, Users, CompaniesService, $timeout) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -19,8 +20,46 @@
     vm.remove = remove;
     vm.save = save;
     vm.taskgroup = taskgroupResolve;
-    vm.cmphst = "Company Hosts";
-    vm.companies = CompaniesService.query();
+    //vm.cmphst = "Company Hosts";
+    vm.programs = [];
+
+
+    // Create sorting function for companies.
+    function compare(a,b) {
+      if (a.name < b.name)
+        return -1;
+      if (a.name > b.name)
+        return 1;
+      return 0;
+    }
+
+    CompaniesService.query(function (response) {
+      vm.companies = response;
+      vm.companies.sort(compare);
+      vm.displayCompanies = vm.companies;
+      // Get unique programs.
+      vm.companies.forEach(function(c) {
+        c.desiredProgramme.forEach(function (dp){
+          if(vm.programs.indexOf(dp) === -1){
+            vm.programs.push(dp);
+          }
+        });
+      });
+      // Angular needs to complete rendering before applying 'chosen'
+      $timeout(function () {
+        // Chosen methods
+        $(".my_select_box").chosen({
+          no_results_text: "Oops, nothing found!",
+          width: "100%"
+        });
+        $(".company_select_box").chosen({
+          no_results_text: "Oops, nothing found!",
+          max_selected_options: 5,
+          width: "100%"
+        });
+      }, 0, false);
+
+    });
     
     // Update values
     if (!vm.taskapplication._id) {
@@ -38,6 +77,38 @@
       vm.secondchoice = vm.taskapplication.choices[1].choice;
       vm.thirdchoice = vm.taskapplication.choices[2].choice;
     }
+    
+    $('.my_select_box').on('change', function(evt, params) {
+      vm.myProgram = vm.programs[params.selected];
+    });
+    vm.chosenCompanies = [];
+    $('.company_select_box').on('change', function(evt, params) {
+      var element = $('.company_select_box');
+      if(params.selected){
+        vm.chosenCompanies.push(vm.companies[params.selected]);
+      } else if(params.deselected) {
+        var position = vm.chosenCompanies.indexOf(vm.companies[params.deselected]);
+        vm.chosenCompanies.splice(position, 1);
+      }
+      console.log(vm.chosenCompanies);
+    });
+  
+
+    vm.filter = false;
+    $scope.toggleFilter = function () {
+      vm.filter = !vm.filter;
+      updateCompanyList();
+    };
+
+    function updateCompanyList() {
+      vm.displayCompanies = [];        
+      vm.companies.forEach(function (c) {
+        if(!vm.filter || c.desiredProgramme.indexOf(vm.myProgram) >= 0){
+          vm.displayCompanies.push(c);
+        }
+      });
+    }
+
     
     $scope.goBack = function(){
       if(!vm.taskapplication._id){
