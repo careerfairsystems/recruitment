@@ -13,20 +13,21 @@
       title: 'Students',
       state: 'students',
       type: 'dropdown',
-      roles: ['*']
+      roles: ['admin']
     });
 
     // Add the dropdown list item
     Menus.addSubMenuItem('topbar', 'students', {
       title: 'List Students',
-      state: 'students.list'
+      state: 'students.list',
+      roles: ['admin']
     });
 
     // Add the dropdown create item
     Menus.addSubMenuItem('topbar', 'students', {
       title: 'Create Student',
       state: 'students.create',
-      roles: ['user']
+      roles: ['admin']
     });
   }
 })();
