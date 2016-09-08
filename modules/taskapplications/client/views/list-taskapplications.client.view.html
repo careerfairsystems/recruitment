@@ -16,6 +16,7 @@
       <h4 class="list-group-item-heading" data-ng-bind="taskapplication.name"></h4>
     </a>
   </div>
+  <button ng-json-export-excel data="vm.taskapplications" report-fields="{name: 'Name', program: 'Program', email: 'Email', phone: 'Phone', foodpref: 'Food preference', motivation: 'Motivation', choices: 'Choices'}", filename =" 'export-excel' " class="css-class">Exportera till Excel</button>
   <div class="alert alert-warning text-center" data-ng-if="vm.taskapplications.$resolved && !vm.taskapplications.length">
     No Taskapplications yet, why don't you <a data-ui-sref="taskapplications.create">create one</a>?
   </div>
