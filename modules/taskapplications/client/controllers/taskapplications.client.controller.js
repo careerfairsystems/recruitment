@@ -6,9 +6,9 @@
     .module('taskapplications')
     .controller('TaskapplicationsController', TaskapplicationsController);
 
-  TaskapplicationsController.$inject = ['$scope', '$state', 'Authentication', 'taskapplicationResolve', '$stateParams', 'taskgroupResolve', 'Users'];
+  TaskapplicationsController.$inject = ['$scope', '$state', 'Authentication', 'taskapplicationResolve', '$stateParams', 'taskgroupResolve', 'Users', 'CompaniesService'];
 
-  function TaskapplicationsController ($scope, $state, Authentication, taskapplication, $stateParams, taskgroupResolve, Users) {
+  function TaskapplicationsController ($scope, $state, Authentication, taskapplication, $stateParams, taskgroupResolve, Users, CompaniesService) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -19,6 +19,8 @@
     vm.remove = remove;
     vm.save = save;
     vm.taskgroup = taskgroupResolve;
+    vm.cmphst = "Company Hosts";
+    vm.companies = CompaniesService.query();
     
     // Update values
     if (!vm.taskapplication._id) {

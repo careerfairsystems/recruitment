@@ -16,6 +16,12 @@ var TaskgroupSchema = new Schema({
     required: 'Please fill Taskgroup name',
     trim: true
   },
+  engname: {
+    type: String,
+    default: '',
+    required: 'Please fill the english Taskgroup name',
+    trim: true
+  },
   description: String,
   tasks: [ { name: String, quantity: Number, description: String } ],
   taskperiod: { start: Date, end: Date },
