@@ -38,6 +38,16 @@
             <p class="help-block error-text" ng-message="required">Taskapplication program is required.</p>
           </div>
         </div>
+        <!-- Year -->
+        <div class="form-group" show-errors>
+          <label class="control-label col-sm-2" for="year">Årskurs / Year</label>
+          <div class="col-sm-10">
+            <input name="year" type="text" ng-model="vm.taskapplication.year" id="year" class="form-control" required>
+          </div>
+          <div ng-messages="vm.form.taskapplicationForm.year.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Taskapplication year is required.</p>
+          </div>
+        </div>
         <!-- Email -->
         <div class="form-group" show-errors>
           <label class="control-label col-sm-2" for="email">Epost / Email</label>
@@ -66,6 +76,30 @@
           </div>
           <div ng-messages="vm.form.taskapplicationForm.foodpref.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Taskapplication foodpref is required.</p>
+          </div>
+        </div>
+        <!-- Attend Gasque -->
+        <div class="form-group" show-errors>
+          <div class="col-sm-10 col-sm-offset-2">
+            <label>
+              <input name="attendGasque" type="checkbox" ng-model="vm.taskapplication.attendGasque" id="attendGasque" required>
+              Kan du komma på Gasquen den 16 november? / Can you attend Gasquen the 16 november?
+            </label>
+          </div>
+          <div ng-messages="vm.form.taskapplicationForm.attendGasque.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">If applicant can attend the gasque is required.</p>
+          </div>
+        </div>
+        <!-- Attend Kickoff -->
+        <div class="form-group" show-errors>
+          <div class="col-sm-10 col-sm-offset-2">
+            <label>
+              <input name="attendKickoff" type="checkbox" ng-model="vm.taskapplication.attendKickoff" id="attendKickoff" required>
+              Kan du komma på värdkickoffen den 12 oktober? / Can you attend the hosts kickoff the 12 of october?
+            </label>
+          </div>
+          <div ng-messages="vm.form.taskapplicationForm.attendGasque.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">If applicant can attend the gasque is required.</p>
           </div>
         </div>
         <!-- Motivation -->

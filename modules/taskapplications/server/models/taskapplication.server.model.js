@@ -22,6 +22,11 @@ var TaskapplicationSchema = new Schema({
     required: 'Please fill the applicants program',
     trim: true
   },
+  year: {
+    type: Number,
+    default: 1,
+    required: 'Please fill the applicants year'
+  },
   email: {
     type: String,
     default: '',
@@ -46,6 +51,16 @@ var TaskapplicationSchema = new Schema({
     trim: true
   },
   choices: [{ order: Number, choice: String }],
+  attendGasque: {
+    type: Boolean,
+    default: false,
+    required: 'Please fill if the applicant can attend the gasque'
+  }, 
+  attendKickoff: {
+    type: Boolean,
+    default: false,
+    required: 'Please fill if the applicant can attend the host kickoff'
+  }, 
   created: {
     type: Date,
     default: Date.now
