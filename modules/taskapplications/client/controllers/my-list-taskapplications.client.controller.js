@@ -15,10 +15,10 @@
       method: 'GET',
       url: '/api/taskapplications/mylist/' + vm.user._id
     }).then(function successCallback(response) {
-        vm.taskapplications = response.data;
-      }, function errorCallback(response) {
-        console.log(response);
-        vm.error = response;
-      });
+      vm.taskapplications = response.data;
+    }, function errorCallback(response) {
+      console.log(response);
+      vm.error = response;
+    });
   }
 })();
