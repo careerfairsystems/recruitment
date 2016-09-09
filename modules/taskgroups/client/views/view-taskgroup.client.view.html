@@ -1,8 +1,10 @@
 <section>
   <div class="page-header">
 
-    <!-- Name -->
+    <!-- SweName -->
     <h1 data-ng-bind="vm.taskgroup.name"></h1>
+    <!-- EngName -->
+    <h1 data-ng-bind="vm.taskgroup.engname"></h1>
     <hr>
     <!-- Description -->
     <h3>Description</h3>
@@ -31,7 +33,7 @@
           </tr>
         </table>
     </div>
-
+    <a class="btn btn-primary btn-lg text-center" data-ui-sref="taskapplications.create({ taskgroupId: vm.taskgroup._id })">Apply now</a>
 
 
   </div>

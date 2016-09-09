@@ -1,7 +1,8 @@
 <section>
   <div class="page-header">
     <div class="col-sm-offset-2">
-      <h1>{{vm.taskapplication._id ? 'Edit Taskapplication' : 'Apply to ' + vm.taskgroup.name }}</h1>
+      <h3>{{vm.taskapplication._id ? '' : 'Ansök till ' + vm.taskgroup.name }}</h3>
+      <h3>{{vm.taskapplication._id ? 'Edit Taskapplication' : 'Apply to ' + vm.taskgroup.engname }}</h3>
     </div>
   </div>
   <div class="col-md-12">
@@ -9,7 +10,7 @@
       <fieldset>
         <!-- Firstname -->
         <div class="form-group" show-errors>
-          <label class="control-label col-sm-2" for="firstname">First Name</label>
+          <label class="control-label col-sm-2" for="firstname">Förnamn / First Name</label>
           <div class="col-sm-10">
             <input name="firstname" type="text" ng-model="vm.firstname" id="firstname" class="form-control" placeholder="Firstname" required>
           </div>
@@ -19,7 +20,7 @@
         </div>
         <!-- Lastname -->
         <div class="form-group" show-errors>
-          <label class="control-label col-sm-2" for="lastname">Lastname</label>
+          <label class="control-label col-sm-2" for="lastname">Efternamn / Lastname</label>
           <div class="col-sm-10">
             <input name="lastname" type="text" ng-model="vm.lastname" id="lastname" class="form-control" placeholder="Lastname" required>
           </div>
@@ -29,17 +30,28 @@
         </div>
         <!-- Program -->
         <div class="form-group" show-errors>
-          <label class="control-label col-sm-2" for="program">Program</label>
+          <label class="control-label col-sm-2" for="program">Program / Education</label>
           <div class="col-sm-10">
-            <input name="program" type="text" ng-model="vm.taskapplication.program" id="program" class="form-control" placeholder="Ex: D11, W14, M13" required>
+              <select name="program" ng-model="vm.myProgram" ng-options="program for program in vm.programs" class="my_select_box">
+              </select>
           </div>
           <div ng-messages="vm.form.taskapplicationForm.program.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Taskapplication program is required.</p>
           </div>
         </div>
+        <!-- Year -->
+        <div class="form-group" show-errors>
+          <label class="control-label col-sm-2" for="year">Årskurs / Year</label>
+          <div class="col-sm-10">
+            <input name="year" type="text" ng-model="vm.taskapplication.year" id="year" class="form-control" required>
+          </div>
+          <div ng-messages="vm.form.taskapplicationForm.year.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Taskapplication year is required.</p>
+          </div>
+        </div>
         <!-- Email -->
         <div class="form-group" show-errors>
-          <label class="control-label col-sm-2" for="email">Email</label>
+          <label class="control-label col-sm-2" for="email">Epost / Email</label>
           <div class="col-sm-10">
             <input name="email" type="text" ng-model="vm.taskapplication.email" id="email" class="form-control" required>
           </div>
@@ -49,7 +61,7 @@
         </div>
         <!-- Phone -->
         <div class="form-group" show-errors>
-          <label class="control-label col-sm-2" for="phone">Phone</label>
+          <label class="control-label col-sm-2" for="phone">Telefonnummer / Phonenumber</label>
           <div class="col-sm-10">
            <input name="phone" type="text" ng-model="vm.taskapplication.phone" id="phone" class="form-control" required>
           </div>
@@ -59,7 +71,7 @@
         </div>
         <!-- Foodpref -->
         <div class="form-group" show-errors>
-          <label class="control-label col-sm-2" for="foodpref">Foodpreferens</label>
+          <label class="control-label col-sm-2" for="foodpref">Matpreferens / Foodpreferens</label>
           <div class="col-sm-10">
             <input name="foodpref" type="text" ng-model="vm.taskapplication.foodpref" id="foodpref" class="form-control" required>
           </div>
@@ -67,9 +79,33 @@
             <p class="help-block error-text" ng-message="required">Taskapplication foodpref is required.</p>
           </div>
         </div>
+        <!-- Attend Gasque -->
+        <div class="form-group" show-errors>
+          <div class="col-sm-10 col-sm-offset-2">
+            <label>
+              <input name="attendGasque" type="checkbox" ng-model="vm.taskapplication.attendGasque" id="attendGasque" required>
+              Kan du komma på Gasquen den 16 november? / Can you attend Gasquen the 16 november?
+            </label>
+          </div>
+          <div ng-messages="vm.form.taskapplicationForm.attendGasque.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">If applicant can attend the gasque is required.</p>
+          </div>
+        </div>
+        <!-- Attend Kickoff -->
+        <div class="form-group" show-errors>
+          <div class="col-sm-10 col-sm-offset-2">
+            <label>
+              <input name="attendKickoff" type="checkbox" ng-model="vm.taskapplication.attendKickoff" id="attendKickoff" required>
+              Kan du komma på värdkickoffen den 12 oktober? / Can you attend the hosts kickoff the 12 of october?
+            </label>
+          </div>
+          <div ng-messages="vm.form.taskapplicationForm.attendGasque.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">If applicant can attend the gasque is required.</p>
+          </div>
+        </div>
         <!-- Motivation -->
         <div class="form-group" show-errors>
-          <label class="control-label col-sm-2" for="motivation">Motivation (max 250 words)</label>
+          <label class="control-label col-sm-2" for="motivation">Motivering (max 250 ord) / Motivation (max 250 words)</label>
           <div class="col-sm-10">
             <textarea name="motivation" type="text" rows="5" ng-model="vm.taskapplication.motivation" id="motivation" class="form-control" required></textarea>
           </div>
@@ -79,7 +115,7 @@
         </div>
         <!-- First Choice -->
         <div class="form-group" show-errors>
-          <label class="control-label col-sm-2">First Choice</label>
+          <label class="control-label col-sm-2">Förstaval / First Choice</label>
           <div class="col-sm-10">
             <select name="first" class="form-control" ng-model="vm.firstchoice">
               <option ng-repeat="task in vm.taskgroup.tasks">{{ task.name }}</option>
@@ -88,7 +124,7 @@
         </div>
         <!-- Second Choice -->
         <div class="form-group" show-errors>
-          <label class="control-label col-sm-2">Second Choice</label>
+          <label class="control-label col-sm-2">Andraval / Second Choice</label>
           <div class="col-sm-10">
             <select name="second" class="form-control" ng-model="vm.secondchoice">
               <option ng-repeat="task in vm.taskgroup.tasks">{{ task.name }}</option>
@@ -97,19 +133,51 @@
         </div>
         <!-- Third Choice -->
         <div class="form-group" show-errors>
-          <label class="control-label col-sm-2">Third Choice</label>
+          <label class="control-label col-sm-2">Tredjeval / Third Choice</label>
           <div class="col-sm-10">
             <select name="third" class="form-control" ng-model="vm.thirdchoice">
               <option ng-repeat="task in vm.taskgroup.tasks">{{ task.name }}</option>
             </select>
           </div>
         </div>
+
+        <!-- Pick company -->
+        <div class="form-group jumbotron" ng-show="vm.firstchoice == vm.cmphst || vm.secondchoice == vm.cmphst || vm.thirdchoice == vm.cmphst">
+          <h3 class="col-sm-offset-1 col-sm-10">Tillval för Företagsvärd / Optionals for Company Hosts</h3>
+          <div class="col-sm-10 col-sm-offset-1">
+            <p>
+              Som företagsvärd får du lämna in önskemål om vilket företag du vill ta hand om. Du får välja max fem st. Välj i den ordning där först är den du helst vill ha.
+            </p>
+          </div>
+          <div class="col-sm-10 col-sm-offset-1">
+            <p >
+              As a company host you are allowed to desire up to five companies you want to care of. Select them in the order you prioritize.
+            </p>
+          </div>
+          <hr>
+          
+          <div class="col-sm-10 col-sm-offset-1">
+              <select name="program" ng-model="vm.chosenCompanies" ng-options="company.name for company in vm.companies" multiple class="company_select_box">
+              </select>
+            <label for="filter">
+              <input type="checkbox" ng-model="confirmed" ng-change="toggleFilter()" id="filter" />
+            Filtrera efter min utbildning / Filter based on my education
+            </label>
+
+          </div>
+          
+          <div class="col-sm-12">
+            <h4>Företagslista / Companylist</h4>
+            <small class="col-sm-3" ng-repeat="company in vm.displayCompanies">{{ company.name }}</small>
+          </div>
+        </div>
+
         <!-- Submit -->
         <hr>
         <div class="form-group">
           <div class="col-sm-3 col-sm-offset-2">
             <button ng-show="vm.taskapplication._id" ng-click="goBack" class="btn btn-default">Go back</button>
-            <button type="submit" class="btn btn-primary btn-lg">{{vm.taskapplication._id ? 'Update' : 'Apply now'}}</button>
+            <button type="submit" class="btn btn-primary btn-lg">{{vm.taskapplication._id ? 'Update' : 'Ansök nu / Apply now'}}</button>
           </div>
         </div>
         <div ng-show="vm.error" class="text-danger">

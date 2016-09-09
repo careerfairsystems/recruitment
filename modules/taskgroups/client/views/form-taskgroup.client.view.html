@@ -7,10 +7,18 @@
       <fieldset>
         <!-- Name -->
         <div class="form-group" show-errors>
-          <label class="control-label" for="name">Name</label>
-          <input name="name" type="text" ng-model="vm.taskgroup.name" id="name" class="form-control" placeholder="Name" required>
+          <label class="control-label" for="name">Name(Swedish)</label>
+          <input name="name" type="text" ng-model="vm.taskgroup.name" id="name" class="form-control" placeholder="Name (Swedish)" required>
           <div ng-messages="vm.form.taskgroupForm.name.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Taskgroup name is required.</p>
+          </div>
+        </div>
+        <!-- Engname -->
+        <div class="form-group" show-errors>
+          <label class="control-label" for="engname">Name(English)</label>
+          <input name="engname" type="text" ng-model="vm.taskgroup.engname" id="engname" class="form-control" placeholder="Name (English)" required>
+          <div ng-messages="vm.form.taskgroupForm.engname.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Taskgroup english-name is required.</p>
           </div>
         </div>
         <!-- Description -->
