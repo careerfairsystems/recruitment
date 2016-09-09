@@ -19,7 +19,7 @@
         templateUrl: 'modules/taskapplications/client/views/submitted-taskapplication.client.view.html'
       })
       .state('taskapplications.mylist', {
-        url: '',
+        url: '/mylist',
         templateUrl: 'modules/taskapplications/client/views/list-taskapplications.client.view.html',
         controller: 'MyTaskapplicationsListController',
         controllerAs: 'vm',

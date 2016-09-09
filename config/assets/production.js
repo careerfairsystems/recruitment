@@ -18,6 +18,8 @@ module.exports = {
         'public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
         'public/lib/angular-file-upload/angular-file-upload.min.js',
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
+        'public/lib/json-export-excel/dest/json-export-excel.min.js',
+        'public/lib/file-saver/FileSaver.min.js',
         'public/lib/jquery/dist/jquery.min.js',
         'public/lib/chosen/chosen.jquery.js'
       ]
