@@ -15,12 +15,13 @@
     vm.authentication = Authentication;
     vm.user = vm.authentication.user;
     vm.taskapplication = taskapplication;
+    vm.createMode = !vm.taskapplication._id;
     vm.error = null;
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
     vm.taskgroup = taskgroupResolve;
-    //vm.cmphst = "Company Hosts";
+    vm.cmphst = "Company Hosts";
     vm.programs = [];
 
 
@@ -133,6 +134,7 @@
       // Update taskapplication name value;
       vm.taskapplication.name = vm.firstname + ' ' + vm.lastname;
       vm.taskapplication.choices = [{ order: 1, choice: vm.firstchoice }, { order: 2, choice: vm.secondchoice }, { order: 3, choice: vm.thirdchoice }];
+      vm.taskapplication.program = vm.myProgram;
   
       // TODO: move create/update logic to service
       if (vm.taskapplication._id) {
@@ -142,7 +144,7 @@
       }
 
       function successCallbackUser(res) {
-        if(!vm.taskapplication._id){
+        if(vm.createMode){
           $state.go('taskapplications.submitted');
         } else {
           $state.go('taskapplications.view', { taskapplicationId: vm.taskapplication._id, taskgroupId: vm.taskapplication.taskgroup });
@@ -158,6 +160,7 @@
 
       // Update user with saved applicationinformation
       function updateUserProfile(){
+        if(vm.user){
         // Update user data.
         vm.user.firstName = vm.firstname;
         vm.user.lastName = vm.lastname;
@@ -169,6 +172,9 @@
 
         var myUser = new Users(vm.user);
         myUser.$update(successCallbackUser, errorCallback);
+        } else {
+          successCallbackUser();
+        }
       }
     }
   }
