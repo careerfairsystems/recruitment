@@ -125,13 +125,10 @@
 
     // Returns the chosen companies on the form saved in the database
     function chosenCompaniesDBFormat() {
-      var dbFormatted = [{
-        name: String,
-        order: Number
-      }];
+      var dbFormatted = [];
 
       for(var i = 0; i < vm.chosenCompanies.length; i++) {
-        dbFormatted.push({ name: vm.chosenCompanies[i], order: i + 1 });
+        dbFormatted.push({ name: vm.chosenCompanies[i].name, order: i + 1 });
       }
 
       return dbFormatted;
@@ -148,6 +145,7 @@
       vm.taskapplication.name = vm.firstname + ' ' + vm.lastname;
       vm.taskapplication.choices = [{ order: 1, choice: vm.firstchoice }, { order: 2, choice: vm.secondchoice }, { order: 3, choice: vm.thirdchoice }];
       vm.taskapplication.chosenCompanies = chosenCompaniesDBFormat();
+      vm.taskapplication.program = vm.myProgram;
 
   
       // TODO: move create/update logic to service
