@@ -23,7 +23,6 @@
     //vm.cmphst = 'Company Hosts';
     vm.programs = [];
 
-
     // Create sorting function for companies.
     function compare(a,b) {
       if (a.name < b.name)

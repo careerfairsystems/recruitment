@@ -26,7 +26,7 @@
       }).then(function successCallback(response) {
         console.log(response);
         vm.fetchedCompanies = response.data;
-        vm.msg = "Successfully loaded " + response.data.length + " companies";
+        vm.msg = 'Successfully loaded ' + response.data.length + ' companies';
       }, function errorCallback(response) {
         console.log(response);
         vm.error = response;
@@ -39,8 +39,105 @@
         var comp = new CompaniesService(c);
         comp.$delete();
       });
-      vm.msg = "Deleted ALL companies, hurray!";
+      vm.msg = 'Deleted ALL companies, hurray!';
     };
+
+    // Maps program names in different languages among the current
+    function mapPrograms(companiesDesired) {
+      userChoices = [];
+      programs = ['Civil Engineering - Architecture',
+                  'Architect',
+                  'Arkitekt',
+                  'Biomedical Engineering',
+                  'Biotechnology',
+                  'Bioteknik',
+                  'Chemical Engineering',
+                  'Kemiteknik',
+                  'Fire Protection Engineering',
+                  'Brandingenjörsutbildning',
+                  'Byggteknik med arkitektur',
+                  'Byggteknik med järnvägsteknik',
+                  'Civil Engineering - Railway Construction',
+                  'Byggteknik med väg- och trafikteknik',
+                  'Civil Engineering- Road and Traffic Technology',
+                  'Väg- och vatttenbyggnad',
+                  'Civil Engineering',
+                  'Computer Science and Engineering',
+                  'Datateknik',
+                  'Information and Communication Engineering',
+                  'Informations- och kommunikationsteknik',
+                  'Ekosystemteknik',
+                  'Electrical Engineering',
+                  'Elektroteknik',
+                  'Engineering Mathematics',
+                  'Engineering Nanoscience',
+                  'Engineering Physics',
+                  'Teknisk Matematik',
+                  'Teknisk Fysik',
+                  'Teknisk Nanovetenskap',
+                  'Environmental Engineering',
+                  'Industrial Design',
+                  'Industrial Engineering and Management',
+                  'Industridesign',
+                  'Industriell ekonomi',
+                  'Lantmäteri',
+                  'Maskinteknik med teknisk design',
+                  'Mechanical Engineering with Industrial Design',
+                  'Maskinteknik',
+                  'Mechanical Engineering',
+                  'Medicin och teknik',
+                  'Surveying'];
+
+        toShow = ['Byggteknik med arkitektur / Civil Engineering - Architecture',
+                  'Arkitekt / Architect',
+                  'Arkitekt / Architect',
+                  'Medicin och teknik / Biomedical Engineering',
+                  'Bioteknik / Biotechnology',
+                  'Bioteknik / Biotechnology',                  
+                  'Kemiteknik / Chemical Engineering',
+                  'Kemiteknik / Chemical Engineering',
+                  'Brandingenjörsutbildning / Fire Protection Engineering',
+                  'Brandingenjörsutbildning / Fire Protection Engineering',
+                  'Byggteknik med arkitektur / Civil Engineering - Architecture',
+                  'Byggteknik med järnvägsteknik / Civil Engineering - Railway Construction',
+                  'Byggteknik med järnvägsteknik / Civil Engineering - Railway Construction',
+                  'Civil Engineering- Road and Traffic Technology / Civil Engineering- Road and Traffic Technology',
+                  'Civil Engineering- Road and Traffic Technology / Civil Engineering- Road and Traffic Technology',
+                  'Väg- och vattenbyggnad / Civil Engineering',
+                  'Väg- och vattenbyggnad / Civil Engineering',
+                  'Datateknik / Computer Science and Engineering',
+                  'Datateknik / Computer Science and Engineering',
+                  'Information and Communication Engineering',
+                  'Informations- och kommunikationsteknik',
+                  'Ekosystemteknik / Environmental Engineering',
+                  'Elektroteknik / Electrical Engineering',
+                  'Elektroteknik / Electrical Engineering',
+                  'Teknisk Matematik / Engineering Mathematics',
+                  'Teknisk Nanovetenskap / Engineering Nanoscience',
+                  'Teknisk Fysik / Engineering Physics',
+                  'Teknisk Matematik / Engineering Mathematics',
+                  'Teknisk Fysik / Engineering Physics',
+                  'Teknisk Nanovetenskap / Engineering Nanoscience',
+                  'Ekosystemteknik / Environmental Engineering',
+                  'Industridesign / Industrial Design',
+                  'Industriell ekonomi / Industrial Engineering and Management',
+                  'Industridesign / Industrial Design',
+                  'Industriell ekonomi / Industrial Engineering and Management',
+                  'Lantmäteri / Surveying',
+                  'Maskinteknik med teknisk design / Mechanical Engineering with Industrial Design',
+                  'Maskinteknik med teknisk design / Mechanical Engineering with Industrial Design',
+                  'Maskinteknik / Mechanical Engineering',
+                  'Maskinteknik / Mechanical Engineering',
+                  'Medicin och teknik / Biomedical Engineering',
+                  'Lantmäteri / Surveying'];
+
+
+      forEach(companiesDesired) {
+        //kolla om elementet finns i programs, lägg i så fall in motsvarande värde i toShow (samma plats)
+      }
+
+      return toShow;
+    }
 
     // Be careful, quite strong method.
     $scope.saveFetchedCompanies = function saveFetchedCompanies() {
@@ -56,19 +153,15 @@
       }
       function errorCallback (response){
         console.log('Error!');
-        vm.msg = "Error occurred when saving companies, contact IT";
+        vm.msg = 'Error occurred when saving companies, contact IT';
       }
       vm.fetchedCompanies.forEach(function(fc){
         // Check that company doesnt already exist. Assumes unique name.
         if(cName.indexOf(fc.name) < 0){
-          CompaniesService.post({ name: fc.name, desiredProgramme: fc.profile.desiredProgramme }, successCallback);
+          CompaniesService.post({ name: fc.name, desiredProgramme: toShow(fc.profile.desiredProgramme) }, successCallback);
         }
       });
-      vm.msg = "Successfully saved all fetched companies"; 
+      vm.msg = 'Successfully saved all fetched companies'; 
     };
-
-    
-
-
   }
 })();
