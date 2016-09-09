@@ -20,7 +20,7 @@
     vm.remove = remove;
     vm.save = save;
     vm.taskgroup = taskgroupResolve;
-    //vm.cmphst = "Company Hosts";
+    //vm.cmphst = 'Company Hosts';
     vm.programs = [];
 
 
@@ -48,14 +48,14 @@
       // Angular needs to complete rendering before applying 'chosen'
       $timeout(function () {
         // Chosen methods
-        $(".my_select_box").chosen({
-          no_results_text: "Oops, nothing found!",
-          width: "100%"
+        $('.my_select_box').chosen({
+          no_results_text: 'Oops, nothing found!',
+          width: '100%'
         });
-        $(".company_select_box").chosen({
-          no_results_text: "Oops, nothing found!",
+        $('.company_select_box').chosen({
+          no_results_text: 'Oops, nothing found!',
           max_selected_options: 5,
-          width: "100%"
+          width: '100%'
         });
       }, 0, false);
 
@@ -123,6 +123,17 @@
       }
     }
 
+    // Returns the chosen companies on the form saved in the database
+    function chosenCompaniesDBFormat() {
+      var dbFormatted = [];
+
+      for(var i = 0; i < vm.chosenCompanies.length; i++) {
+        dbFormatted.push({ name: vm.chosenCompanies[i].name, order: i + 1 });
+      }
+
+      return dbFormatted;
+    }
+
     // Save Taskapplication
     function save(isValid) {
       if (!isValid) {
@@ -133,6 +144,9 @@
       // Update taskapplication name value;
       vm.taskapplication.name = vm.firstname + ' ' + vm.lastname;
       vm.taskapplication.choices = [{ order: 1, choice: vm.firstchoice }, { order: 2, choice: vm.secondchoice }, { order: 3, choice: vm.thirdchoice }];
+      vm.taskapplication.chosenCompanies = chosenCompaniesDBFormat();
+      vm.taskapplication.program = vm.myProgram;
+
   
       // TODO: move create/update logic to service
       if (vm.taskapplication._id) {
