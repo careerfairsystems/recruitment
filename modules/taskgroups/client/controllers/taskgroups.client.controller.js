@@ -33,7 +33,7 @@
       vm.taskgroup.tasks[index].edit = false;
     };
     $scope.deleteTask = function (index) {
-      vm.taskgroup.tasks[index].splice(index, 1);
+      vm.taskgroup.tasks.splice(index, 1);
     };
 
 
