@@ -9,8 +9,8 @@
         scope: true,
         controller: function ($scope, $element) {
           var d = new Date();
-          var res = d.toISOString().slice(0,10).replace(/-/g,"");
-          $scope.filename = "Applications-" + res;
+          var res = d.toISOString().slice(0,10).replace(/-/g,'');
+          $scope.filename = 'Applications-' + res;
           var fields = [];
           var header = [];
           var separator = $scope.separator || ';';
@@ -34,12 +34,12 @@
 
           function _bodyData(taskapplications) {
             var data = taskapplications;
-            var body = "";
+            var body = '';
             angular.forEach(data, function(dataItem) {
               var rowItems = [];
               angular.forEach(fields, function(field) {
                 if(field.indexOf('.')) {
-                  field = field.split(".");
+                  field = field.split('.');
                   var curItem = dataItem;
                   // deep access to obect property
                   angular.forEach(field, function(prop){

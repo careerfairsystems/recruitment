@@ -21,7 +21,7 @@
     vm.remove = remove;
     vm.save = save;
     vm.taskgroup = taskgroupResolve;
-    vm.cmphst = "Company Hosts";
+    vm.cmphst = 'Company Hosts';
     vm.programs = [];
 
 
@@ -173,17 +173,17 @@
       // Update user with saved applicationinformation
       function updateUserProfile(){
         if(vm.user){
-        // Update user data.
-        vm.user.firstName = vm.firstname;
-        vm.user.lastName = vm.lastname;
-        vm.user.displayName = vm.firstname + ' ' + vm.lastname;
-        vm.user.program = vm.taskapplication.program;
-        vm.user.email = vm.taskapplication.email;
-        vm.user.phone = vm.taskapplication.phone;
-        vm.user.foodpref = vm.taskapplication.foodpref;
+          // Update user data.
+          vm.user.firstName = vm.firstname;
+          vm.user.lastName = vm.lastname;
+          vm.user.displayName = vm.firstname + ' ' + vm.lastname;
+          vm.user.program = vm.taskapplication.program;
+          vm.user.email = vm.taskapplication.email;
+          vm.user.phone = vm.taskapplication.phone;
+          vm.user.foodpref = vm.taskapplication.foodpref;
 
-        var myUser = new Users(vm.user);
-        myUser.$update(successCallbackUser, errorCallback);
+          var myUser = new Users(vm.user);
+          myUser.$update(successCallbackUser, errorCallback);
         } else {
           successCallbackUser();
         }
