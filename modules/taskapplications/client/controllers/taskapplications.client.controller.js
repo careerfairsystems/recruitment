@@ -23,7 +23,8 @@
     vm.taskgroup = taskgroupResolve;
     vm.cmphst = 'Company Host';
     vm.programs = [];
-
+    vm.sizes = ['XS','S','M','L','XL','XXL'];
+    $scope.tshirtsize = 'M';
 
     // Create sorting function for companies.
     function compare(a,b) {
@@ -79,6 +80,13 @@
       vm.thirdchoice = vm.taskapplication.choices[2].choice;
     }
     
+    $('.size_select_box').chosen({
+      no_results_text: 'Oops, nothing found!',
+      width: '100%'
+    });
+    $('.size_select_box').on('change', function(evt, params) {
+      vm.taskapplication.tshirtsize = params.selected;
+    });
     $('.my_select_box').on('change', function(evt, params) {
       vm.myProgram = vm.programs[params.selected];
     });
