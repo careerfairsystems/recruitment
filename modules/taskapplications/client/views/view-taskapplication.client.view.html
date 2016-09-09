@@ -82,6 +82,16 @@
             <textarea rows="5" class="form-control" data-ng-bind="vm.taskapplication.motivation" readonly></textarea>
           </div>
         </div>
+        <div class="row">
+          <!--Chosen companies -->
+          <label for="companies" class="col-sm-2">Chosen companies</label>
+          <div ng-show = "vm.taskapplication.chosenCompanies.length != 0"' class="col-sm-10">
+            <ol>
+              <li ng-repeat = "company in vm.taskapplication.chosenCompanies">
+                {{company.name}}
+              </li>
+            </ol>
+          </div>
       </div>
     </div>
 
