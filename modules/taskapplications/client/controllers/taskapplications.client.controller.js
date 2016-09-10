@@ -150,8 +150,10 @@
     function save(isValid) {
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.taskapplicationForm');
+        vm.error = 'Ett fält är inte ifyllt / A field is missing';
         return false;
       }
+      vm.error = '';
 
       // Update taskapplication name value;
       vm.taskapplication.name = vm.firstname + ' ' + vm.lastname;
