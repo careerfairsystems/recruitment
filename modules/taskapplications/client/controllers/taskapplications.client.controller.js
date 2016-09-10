@@ -60,6 +60,7 @@
         $('.company_select_box').chosen({
           no_results_text: 'Oops, nothing found!',
           max_selected_options: 5,
+          placeholder_text_multiple: 'Fyll i 5 företag / Apply 5 companies',
           width: '100%'
         });
       }, 0, false);
