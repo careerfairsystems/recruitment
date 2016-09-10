@@ -120,7 +120,7 @@
                   'Medicin och teknik',
                   'Surveying'];
 
-        var toShow = ['Byggteknik med arkitektur / Civil Engineering - Architecture',
+      var toShow = ['Byggteknik med arkitektur / Civil Engineering - Architecture',
                   'Arkitekt / Architect',
                   'Arkitekt / Architect',
                   'Medicin och teknik / Biomedical Engineering',
@@ -164,7 +164,7 @@
                   'Lantmäteri / Surveying'];
 
 
-     for(var i = 0; i < companiesDesired.length; i++) {
+      for(var i = 0; i < companiesDesired.length; i++) {
         var programIndex = programs.indexOf(companiesDesired[i]);
         if(programIndex > -1) {
           desiredPrograms.push(toShow[programIndex]);
