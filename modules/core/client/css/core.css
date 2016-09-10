@@ -1,5 +1,5 @@
 body {
-  background: url("/modules/core/client/img/bakground-image.jpg");
+  background: #002B64;
   background-attachment: fixed; }
 
 @media screen and (max-width: 768px) {
