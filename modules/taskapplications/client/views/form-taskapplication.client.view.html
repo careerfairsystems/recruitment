@@ -100,8 +100,16 @@
         <div class="form-group" show-errors>
           <div class="col-sm-10 col-sm-offset-2">
             <label>
-              <input name="driverLicense" type="checkbox" ng-model="vm.taskapplication.driverLicense" id="driverLicense">
               Har du B-körkort? / Do you have a driver's license?
+            </label>
+            </label>
+            <br />
+            <label>
+              <input name="driverLicense" type="radio" ng-model="driverLicense" id="driverLicense" value="yes"> Ja / Yes
+            </label>
+            <br />
+            <label>
+              <input name="driverLicense" type="radio" ng-model="driverLicense" id="driverLicense" value="no"> Nej / No
             </label>
           </div>
           <div ng-messages="vm.form.taskapplicationForm.driverLicense.$error" role="alert">
@@ -112,8 +120,15 @@
         <div class="form-group" show-errors>
           <div class="col-sm-10 col-sm-offset-2">
             <label>
-              <input name="attendGasque" type="checkbox" ng-model="vm.taskapplication.attendGasque" id="attendGasque">
               Kan du komma på Gasquen den 16 november? / Can you attend Gasquen the 16 november?
+            </label>
+            <br />
+            <label>
+              <input name="attendGasque" type="radio" ng-model="attendGasque" id="attendGasque" value="yes"> Ja / Yes
+            </label>
+            <br />
+            <label>
+              <input name="attendGasque" type="radio" ng-model="attendGasque" id="attendGasque" value="no"> Nej / No
             </label>
           </div>
           <div ng-messages="vm.form.taskapplicationForm.attendGasque.$error" role="alert">
@@ -124,8 +139,15 @@
         <div class="form-group" show-errors>
           <div class="col-sm-10 col-sm-offset-2">
             <label>
-              <input name="attendKickoff" type="checkbox" ng-model="vm.taskapplication.attendKickoff" id="attendKickoff">
               Kan du komma på värdkickoffen den 12 oktober? / Can you attend the hosts kickoff the 12 of october?
+            </label> 
+            <br />
+            <label>
+              <input name="attendKickoff" type="radio" ng-model="attendKickoff" id="attendKickoff" value="yes"> Ja / Yes
+            </label>
+            <br />
+            <label>
+              <input name="attendKickoff" type="radio" ng-model="attendKickoff" id="attendKickoff" value="no"> Nej / No
             </label>
           </div>
           <div ng-messages="vm.form.taskapplicationForm.attendGasque.$error" role="alert">

@@ -26,7 +26,7 @@
 
 
     vm.sizes = ['XS','S','M','L','XL','XXL'];
-    $scope.tshirtsize = 'M';
+    vm.taskapplication.tshirtsize = "XS";
 
 
     // Create sorting function for companies.
@@ -158,6 +158,9 @@
       vm.taskapplication.choices = [{ order: 1, choice: vm.firstchoice }, { order: 2, choice: vm.secondchoice }, { order: 3, choice: vm.thirdchoice }];
       vm.taskapplication.chosenCompanies = chosenCompaniesDBFormat();
       vm.taskapplication.program = vm.myProgram;
+      vm.taskapplication.driverLicense = $scope.driverLicense === 'yes';
+      vm.taskapplication.attendGasque = $scope.attendGasque === 'yes';
+      vm.taskapplication.attendKickoff = $scope.attendKickoff === 'yes';
   
       // TODO: move create/update logic to service
       if (vm.taskapplication._id) {
