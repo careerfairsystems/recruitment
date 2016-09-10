@@ -71,9 +71,13 @@
     };
 
     // Maps program names in different languages among the current
-    function mapPrograms(companiesDesired) {
-      userChoices = [];
-      programs = ['Civil Engineering - Architecture',
+    function mappedPrograms(companiesDesired) {
+      if(companiesDesired === undefined) {
+        return [];
+      }
+
+      var desiredPrograms = []; 
+      var programs = ['Civil Engineering - Architecture',
                   'Architect',
                   'Arkitekt',
                   'Biomedical Engineering',
@@ -116,7 +120,7 @@
                   'Medicin och teknik',
                   'Surveying'];
 
-        toShow = ['Byggteknik med arkitektur / Civil Engineering - Architecture',
+        var toShow = ['Byggteknik med arkitektur / Civil Engineering - Architecture',
                   'Arkitekt / Architect',
                   'Arkitekt / Architect',
                   'Medicin och teknik / Biomedical Engineering',
@@ -135,8 +139,8 @@
                   'Väg- och vattenbyggnad / Civil Engineering',
                   'Datateknik / Computer Science and Engineering',
                   'Datateknik / Computer Science and Engineering',
-                  'Information and Communication Engineering',
-                  'Informations- och kommunikationsteknik',
+                  'Informations- och kommunikationsteknik / Information and Communication Engineering',
+                  'Informations- och kommunikationsteknik / Information and Communication Engineering',
                   'Ekosystemteknik / Environmental Engineering',
                   'Elektroteknik / Electrical Engineering',
                   'Elektroteknik / Electrical Engineering',
@@ -160,11 +164,14 @@
                   'Lantmäteri / Surveying'];
 
 
-      forEach(companiesDesired) {
-        //kolla om elementet finns i programs, lägg i så fall in motsvarande värde i toShow (samma plats)
+     for(var i = 0; i < companiesDesired.length; i++) {
+        var programIndex = programs.indexOf(companiesDesired[i]);
+        if(programIndex > -1) {
+          desiredPrograms.push(toShow[programIndex]);
+        }
       }
 
-      return toShow;
+      return desiredPrograms;
     }
 
     // Be careful, quite strong method.
@@ -186,7 +193,7 @@
       vm.fetchedCompanies.forEach(function(fc){
         // Check that company doesnt already exist. Assumes unique name.
         if(cName.indexOf(fc.name) < 0){
-          CompaniesService.post({ name: fc.name, desiredProgramme: toShow(fc.profile.desiredProgramme) }, successCallback);
+          CompaniesService.post({ name: fc.name, desiredProgramme: mappedPrograms(fc.profile.desiredProgramme) }, successCallback);
         }
       });
       vm.msg = 'Successfully saved all fetched companies'; 
