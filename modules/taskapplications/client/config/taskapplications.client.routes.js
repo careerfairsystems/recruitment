@@ -46,7 +46,6 @@
           taskgroupResolve: getTaskgroup
         },
         data: {
-          roles: ['user', 'admin'],
           pageTitle : 'Taskapplications Create'
         }
       })

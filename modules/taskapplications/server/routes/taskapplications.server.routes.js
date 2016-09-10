@@ -11,9 +11,10 @@ module.exports = function(app) {
   app.route('/api/taskapplications/mylist/:userId').all(taskapplicationsPolicy.isAllowed)
     .get(taskapplications.mylist);
   
-  app.route('/api/taskapplications').all(taskapplicationsPolicy.isAllowed)
-    .get(taskapplications.list)
+  app.route('/api/taskapplications')
     .post(taskapplications.create);
+  app.route('/api/taskapplications').all(taskapplicationsPolicy.isAllowed)
+    .get(taskapplications.list);
 
   app.route('/api/taskapplications/:taskapplicationId').all(taskapplicationsPolicy.isAllowed)
     .get(taskapplications.read)

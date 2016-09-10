@@ -15,13 +15,19 @@
     vm.authentication = Authentication;
     vm.user = vm.authentication.user;
     vm.taskapplication = taskapplication;
+    vm.createMode = !vm.taskapplication._id;
     vm.error = null;
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
     vm.taskgroup = taskgroupResolve;
-    //vm.cmphst = 'Company Hosts';
+    vm.cmphst = 'Company Host';
     vm.programs = [];
+
+
+    vm.sizes = ['XS','S','M','L','XL','XXL'];
+    $scope.tshirtsize = 'M';
+
 
     // Create sorting function for companies.
     function compare(a,b) {
@@ -77,6 +83,13 @@
       vm.thirdchoice = vm.taskapplication.choices[2].choice;
     }
     
+    $('.size_select_box').chosen({
+      no_results_text: 'Oops, nothing found!',
+      width: '100%'
+    });
+    $('.size_select_box').on('change', function(evt, params) {
+      vm.taskapplication.tshirtsize = params.selected;
+    });
     $('.my_select_box').on('change', function(evt, params) {
       vm.myProgram = vm.programs[params.selected];
     });
@@ -124,13 +137,10 @@
 
     // Returns the chosen companies on the form saved in the database
     function chosenCompaniesDBFormat() {
-      var dbFormatted = [{
-        name: String,
-        order: Number
-      }];
+      var dbFormatted = [];
 
       for(var i = 0; i < vm.chosenCompanies.length; i++) {
-        dbFormatted.push({ name: vm.chosenCompanies[i], order: i + 1 });
+        dbFormatted.push({ name: vm.chosenCompanies[i].name, order: i + 1 });
       }
 
       return dbFormatted;
@@ -147,7 +157,7 @@
       vm.taskapplication.name = vm.firstname + ' ' + vm.lastname;
       vm.taskapplication.choices = [{ order: 1, choice: vm.firstchoice }, { order: 2, choice: vm.secondchoice }, { order: 3, choice: vm.thirdchoice }];
       vm.taskapplication.chosenCompanies = chosenCompaniesDBFormat();
-
+      vm.taskapplication.program = vm.myProgram;
   
       // TODO: move create/update logic to service
       if (vm.taskapplication._id) {
@@ -157,7 +167,7 @@
       }
 
       function successCallbackUser(res) {
-        if(!vm.taskapplication._id){
+        if(vm.createMode){
           $state.go('taskapplications.submitted');
         } else {
           $state.go('taskapplications.view', { taskapplicationId: vm.taskapplication._id, taskgroupId: vm.taskapplication.taskgroup });
@@ -173,17 +183,21 @@
 
       // Update user with saved applicationinformation
       function updateUserProfile(){
-        // Update user data.
-        vm.user.firstName = vm.firstname;
-        vm.user.lastName = vm.lastname;
-        vm.user.displayName = vm.firstname + ' ' + vm.lastname;
-        vm.user.program = vm.taskapplication.program;
-        vm.user.email = vm.taskapplication.email;
-        vm.user.phone = vm.taskapplication.phone;
-        vm.user.foodpref = vm.taskapplication.foodpref;
+        if(vm.user){
+          // Update user data.
+          vm.user.firstName = vm.firstname;
+          vm.user.lastName = vm.lastname;
+          vm.user.displayName = vm.firstname + ' ' + vm.lastname;
+          vm.user.program = vm.taskapplication.program;
+          vm.user.email = vm.taskapplication.email;
+          vm.user.phone = vm.taskapplication.phone;
+          vm.user.foodpref = vm.taskapplication.foodpref;
 
-        var myUser = new Users(vm.user);
-        myUser.$update(successCallbackUser, errorCallback);
+          var myUser = new Users(vm.user);
+          myUser.$update(successCallbackUser, errorCallback);
+        } else {
+          successCallbackUser();
+        }
       }
     }
   }

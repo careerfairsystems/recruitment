@@ -21,7 +21,7 @@
 
     $scope.addDesiredProgramme = function (dp) {
       vm.company.desiredProgramme.push(dp);
-      vm.newDp = "";
+      vm.newDp = '';
     };
     
     $scope.deleteDesiredProgramme = function (index) {

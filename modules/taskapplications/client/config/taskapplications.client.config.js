@@ -13,7 +13,7 @@
       title: 'Taskapplications',
       state: 'taskapplications',
       type: 'dropdown',
-      roles: ['user']
+      roles: ['admin']
     });
 
     // Add the dropdown list item

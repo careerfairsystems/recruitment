@@ -5,89 +5,126 @@
       <div class="col-sm-8 col-sm-offset-2">
         <!-- Name -->
         <h1 data-ng-bind="vm.taskapplication.name"></h1>
+        <!-- Point -->
         <div class="row">
-          <!-- Program -->
+          <label for="point" class="col-sm-2">Points</label>
+          <div class="col-sm-10">
+            <p data-ng-bind="vm.taskapplication.point"></p>
+          </div>
+        </div>
+        <!-- Program -->
+        <div class="row">
           <label for="program" class="col-sm-2">Program</label>
           <div class="col-sm-10">
             <p data-ng-bind="vm.taskapplication.program"></p>
           </div>
         </div>
+        <!-- Tshirtsize -->
         <div class="row">
-          <!-- Year -->
+          <label for="tshirtsize" class="col-sm-2">Tshirt size</label>
+          <div class="col-sm-10">
+            <p data-ng-bind="vm.taskapplication.tshirtsize"></p>
+          </div>
+        </div>
+        <!-- Year -->
+        <div class="row">
           <label for="year" class="col-sm-2">Year</label>
           <div class="col-sm-10">
             <p data-ng-bind="vm.taskapplication.year"></p>
           </div>
         </div>
+        <!-- Email -->
         <div class="row">
-          <!-- Email -->
           <label for="email" class="col-sm-2">Email</label>
           <div class="col-sm-10">
             <p data-ng-bind="vm.taskapplication.email"></p>
           </div>
         </div>
+        <!-- Phone -->
         <div class="row">
-          <!-- Phone -->
           <label for="phone" class="col-sm-2">Phone</label>
           <div class="col-sm-10">
             <p data-ng-bind="vm.taskapplication.phone"></p>
           </div>
         </div>
+        <!-- Foodpref -->
         <div class="row">
-          <!-- Foodpref -->
           <label for="foodpref" class="col-sm-2">Foodpref</label>
           <div class="col-sm-10">
             <p data-ng-bind="vm.taskapplication.foodpref"></p>
           </div>
         </div>
+        <!-- International -->
         <div class="row">
-          <!-- Attend Gasque -->
+          <label for="international" class="col-sm-2">Is internationtal student</label>
+          <div class="col-sm-10">
+            <p data-ng-bind="vm.taskapplication.internationalStudent"></p>
+          </div>
+        </div>
+        <!-- Driver License -->
+        <div class="row">
+          <label for="driverLicense" class="col-sm-2">Has Driver License</label>
+          <div class="col-sm-10">
+            <p data-ng-bind="vm.taskapplication.driverLicense"></p>
+          </div>
+        </div>
+        <!-- Attend Gasque -->
+        <div class="row">
           <label for="attendGasque" class="col-sm-2">Can attend gasque</label>
           <div class="col-sm-10">
             <p data-ng-bind="vm.taskapplication.attendGasque"></p>
           </div>
         </div>
+        <!-- Attend Kickoff -->
         <div class="row">
-          <!-- Attend Kickoff -->
           <label for="attendKickoff" class="col-sm-2">Can attend the kickoff</label>
           <div class="col-sm-10">
             <p data-ng-bind="vm.taskapplication.attendKickoff"></p>
           </div>
         </div>
+        <!-- First choice -->
         <div class="row">
-          <!-- First choice -->
           <label for="firstchoice" class="col-sm-2">First choice</label>
           <div class="col-sm-10">
             <p data-ng-bind="vm.taskapplication.choices[0].choice"></p>
           </div>
         </div>
+        <!-- Second choice -->
         <div class="row">
-          <!-- Second choice -->
           <label for="secondchoice" class="col-sm-2">Second choice</label>
           <div class="col-sm-10">
             <p data-ng-bind="vm.taskapplication.choices[1].choice"></p>
           </div>
         </div>
+        <!-- Third choice -->
         <div class="row">
-          <!-- Third choice -->
           <label for="thirdchoice" class="col-sm-2">Third choice</label>
           <div class="col-sm-10">
             <p data-ng-bind="vm.taskapplication.choices[2].choice"></p>
           </div>
         </div>
+        <!-- Motivation -->
         <div class="row">
-          <!-- Motivation -->
           <label for="motivation" class="col-sm-2">Motivation</label>
           <div class="col-sm-10">
             <textarea rows="5" class="form-control" data-ng-bind="vm.taskapplication.motivation" readonly></textarea>
           </div>
         </div>
+        <!--Chosen companies -->
+        <div class="row">
+          <label for="companies" class="col-sm-2">Chosen companies</label>
+          <div ng-show = "vm.taskapplication.chosenCompanies.length != 0"' class="col-sm-10">
+            <ol>
+              <li ng-repeat = "company in vm.taskapplication.chosenCompanies">
+                {{company.name}}
+              </li>
+            </ol>
+          </div>
       </div>
     </div>
 
   </div>
-  <div class="pull-right"
-       data-ng-show="vm.taskapplication.isCurrentUserOwner">
+  <div class="pull-right">
     <a class="btn btn-primary"
        data-ui-sref="taskapplications.edit({ taskapplicationId: vm.taskapplication._id, taskgroupId: vm.taskapplication.taskgroup })">
       <i class="glyphicon glyphicon-edit"></i>

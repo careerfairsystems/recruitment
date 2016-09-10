@@ -20,12 +20,12 @@
     $scope.fetchJson = function(){
       var file = $('input[type=file]')[0].files[0];
 
+      var fr = new FileReader();
       function receivedText() {
         console.log(vm.fetchedCompanies);
         vm.fetchedCompanies = JSON.parse(fr.result);
         console.log(vm.fetchedCompanies);
       }   
-      var fr = new FileReader();
       fr.onload = receivedText;
       fr.readAsText(file);
     };

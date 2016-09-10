@@ -39,6 +39,12 @@ var TaskapplicationSchema = new Schema({
     required: 'Please fill the applicants phone',
     trim: true
   },
+  tshirtsize: {
+    type: String,
+    default: '',
+    required: 'Please fill the applicants tshirtsize',
+    trim: true
+  },
   foodpref: {
     type: String,
     default: '',
@@ -51,6 +57,16 @@ var TaskapplicationSchema = new Schema({
     trim: true
   },
   choices: [{ order: Number, choice: String }],
+  internationalStudent: {
+    type: Boolean,
+    default: false,
+    required: 'Please fill if the applicant is a international student'
+  }, 
+  driverLicense: {
+    type: Boolean,
+    default: false,
+    required: 'Please fill if the applicant has a driver license'
+  }, 
   attendGasque: {
     type: Boolean,
     default: false,
@@ -65,6 +81,15 @@ var TaskapplicationSchema = new Schema({
     name: String,
     order: Number
   }],
+  assignedTask: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  point: {
+    type: Number,
+    default: 0
+  },
   created: {
     type: Date,
     default: Date.now

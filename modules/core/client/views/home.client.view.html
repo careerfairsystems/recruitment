@@ -9,31 +9,27 @@
   </div>
   <div class="section" data-ng-show="vm.activeTaskgroup">
     <h2 data-ng-bind="vm.activeTaskgroup.name"></h2>
-    <p ng-bind-html="vm.description"></p> 
+    <p ng-bind-html="vm.description"></p>
 
     <h3>Open positions</h3>
     <table class="table  table-condensed">
       <tr style="font-weight: bold">
         <td style="width:20%">Position</td>
         <td style="width:70%">Description</td>
-        <td style="width:10%">Nbr</td>
       </tr>
       <tr ng-repeat="task in vm.activeTaskgroup.tasks">
         <td>
-          <span>{{ task.name }}</span>
+          <span>{{ task.name }}({{task.quantity}})</span>
         </td>
         <td>
           <span>{{ task.description }}</span>
         </td>
-        <td>
-          <span>{{ task.quantity }}</span>
-        </td>
       </tr>
     </table>
-    
+
     <a class="btn btn-primary btn-lg text-center" data-ui-sref="taskapplications.create({ taskgroupId: vm.activeTaskgroup._id })">Apply now</a>
-    
-    
+
+
   </div>
   <hr>
   <p>

@@ -14,7 +14,7 @@ var path = require('path'),
  */
 exports.create = function(req, res) {
   var taskapplication = new Taskapplication(req.body);
-  taskapplication.user = req.user;
+  //taskapplication.user = req.user;
 
   taskapplication.save(function(err) {
     if (err) {
