@@ -208,18 +208,15 @@
           <hr>
           
           <div class="col-sm-10 col-sm-offset-1">
-              <select name="program" ng-model="vm.chosenCompanies" ng-options="company.name for company in vm.companies" multiple class="company_select_box">
-              </select>
+            <select name="program" ng-model="vm.chosenCompanies" ng-options="company.name for company in vm.companies" multiple class="company_select_box">
+            </select>
             <label for="filter">
-              <input type="checkbox" ng-model="confirmed" ng-change="toggleFilter()" id="filter" />
-            Filtrera efter min utbildning / Filter based on my education
+              <input type="checkbox" ng-model="showCompanies" ng-change="toggleFilter()" id="filter" />
+              Visa list över företag kopplade till min utbildning / Show list of companies connected to my education
             </label>
-
-          </div>
-          
-          <div class="col-sm-12">
-            <h4>Företagslista / Companylist</h4>
-            <small class="col-sm-3" ng-repeat="company in vm.displayCompanies">{{ company.name }}</small>
+            <div ng-show="showCompanies">
+              <p ng-repeat="company in vm.displayCompanies">{{ company.name }}</p>
+            </div>
           </div>
         </div>
 

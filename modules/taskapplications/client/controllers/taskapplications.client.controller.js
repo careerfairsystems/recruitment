@@ -93,6 +93,8 @@
     });
     $('.my_select_box').on('change', function(evt, params) {
       vm.myProgram = vm.programs[params.selected];
+      updateCompanyList();
+      $scope.$apply();
     });
     vm.chosenCompanies = [];
     $('.company_select_box').on('change', function(evt, params) {
