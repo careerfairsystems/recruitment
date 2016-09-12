@@ -21,7 +21,7 @@
     vm.remove = remove;
     vm.save = save;
     vm.taskgroup = taskgroupResolve;
-    vm.cmphst = 'Company Host';
+    vm.cmphst = 'Company';
     vm.programs = [];
 
 
