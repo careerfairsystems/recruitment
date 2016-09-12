@@ -15,8 +15,10 @@
         template: '<ui-view/>'
       })
       .state('taskapplications.submitted', {
-        url: '/submitted',
-        templateUrl: 'modules/taskapplications/client/views/submitted-taskapplication.client.view.html'
+        url: '/submitted/:name/:email',
+        templateUrl: 'modules/taskapplications/client/views/submitted-taskapplication.client.view.html',
+        controller: 'SubmittedController',
+        controllerAs: 'vm',
       })
       .state('taskapplications.mylist', {
         url: '/mylist',

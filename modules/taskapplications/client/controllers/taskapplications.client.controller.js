@@ -21,7 +21,7 @@
     vm.remove = remove;
     vm.save = save;
     vm.taskgroup = taskgroupResolve;
-    vm.cmphst = 'Company Host';
+    vm.cmphst = 'Company';
     vm.programs = [];
 
 
@@ -176,7 +176,7 @@
 
       function successCallbackUser(res) {
         if(vm.createMode){
-          $state.go('taskapplications.submitted');
+          $state.go('taskapplications.submitted', { name: vm.taskapplication.name, email: vm.taskapplication.email });
         } else {
           $state.go('taskapplications.view', { taskapplicationId: vm.taskapplication._id, taskgroupId: vm.taskapplication.taskgroup });
         }
