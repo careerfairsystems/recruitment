@@ -5,9 +5,14 @@
  */
 var path = require('path'),
   mongoose = require('mongoose'),
+  config = require(path.resolve('./config/config')),
   Taskapplication = mongoose.model('Taskapplication'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
+  nodemailer = require('nodemailer'),
+  async = require('async'),
   _ = require('lodash');
+
+var smtpTransport = nodemailer.createTransport(config.mailer.options);
 
 /**
  * Create a Taskapplication
@@ -106,6 +111,56 @@ exports.list = function(req, res) {
     }
   });
 };
+
+
+/**
+ * Send confirmation mail to applicant (POST)
+ */
+exports.confirmationMail = function (req, res, next) {
+  var name = req.body.name;
+  var email = req.body.email;
+  async.waterfall([
+    function (done) {
+      var httpTransport = 'http://';
+      if (config.secure && config.secure.ssl === true) {
+        httpTransport = 'https://';
+      }
+      res.render(path.resolve('modules/taskapplications/server/templates/mailconfirmation'), {
+        name: name,
+        appName: config.app.title,
+      }, function (err, emailHTML) {
+        done(err, emailHTML);
+      });
+    },
+    // If valid email, send reset email using service
+    function (emailHTML, done) {
+      var mailOptions = {
+        to: email,
+        from: config.mailer.from,
+        subject: 'Bekräftelse Värdansökan / Confirmation host application',
+        html: emailHTML
+      };
+      smtpTransport.sendMail(mailOptions, function (err) {
+        if (!err) {
+          res.send({
+            message: 'An email has been sent to the provided email with further instructions.'
+          });
+        } else {
+          return res.status(400).send({
+            message: 'Failure sending email: ' + err
+          });
+        }
+        done(err);
+      });
+    }
+  ], function (err) {
+    if (err) {
+      return next(err);
+    }
+  });
+};
+
+
 
 /**
  * Taskapplication middleware
