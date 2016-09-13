@@ -13,33 +13,39 @@
 
     TaskapplicationsService.query(function(data) {
       vm.taskapplications = data;
+      console.log(data[0]);
       angular.forEach(vm.taskapplications, function(application) {
-        application.choice1 = application.choices[0].choice;
-        application.choice2 = application.choices[1].choice;
-        application.choice3 = application.choices[2].choice;
+        application.choice1 = application.choices[0].choice || '';
+        application.choice2 = application.choices[1].choice || '';
+        application.choice3 = application.choices[2].choice || '';
       });
-    });
-
-    // Datatable code
-    var dataSet = [
-      [ 'Tiger Nixon', 'System Architect', 'Edinburgh', '5421', '2011/04/25', '$320,800' ],
-      [ 'Garrett Winters', 'Accountant', 'Tokyo', '8422', '2011/07/25', '$170,750' ],
-      [ 'Rhona Davidson', 'Integration Specialist', 'Tokyo', '6200', '2010/10/14', '$327,900' ]
-    ];
-    $('#applicationsList').DataTable({
-      dom: 'Bfrtip',
-      buttons: [
-        'copy', 'excel', 'pdf'
-      ],
-      data: dataSet,
-      columns: [
-    { title: 'Name' },
-      { title: 'Position' },
-      { title: 'Office' },
-      { title: 'Extn.' },
-      { title: 'Start date' },
-      { title: 'Salary' }
+      // Datatable code
+      $('#applicationsList').DataTable({
+        dom: 'Bfrtip',
+        "scrollY": 300,
+        "scrollX": true,
+        stateSave: true,
+        buttons: [
+        'copy', 'excel', 'pdf', 'colvis'
+        ],
+        data: data,
+        columns: [
+        { data: 'name', title: "Name" },
+        { data: 'program', title: "Program" },
+        { data: 'year', title: "Year" },
+        { data: 'point', title: "Points" },
+        { data: 'choice1', title: "First choice" },
+        { data: 'choice2', title: "Second choice" },
+        { data: 'choice3', title: "Third choice" },
+        { data: 'attendGasque', title: "Attend Gasque" },
+        { data: 'attendKickoff', title: "Attend Kickoff" },
+        { data: 'driverLicense', title: "DriverLicense" },
+        { data: 'email', title: "Email" },
+        { data: 'phone', title: "Phone" },
+        { data: 'tshirtsize', title: "Tshirtsize" },
+        { data: 'assignedTask', title: "Assigned Task" }
       ]
+      });
     });
 
     

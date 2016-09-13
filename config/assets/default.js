@@ -7,7 +7,7 @@ module.exports = {
         'public/lib/bootstrap/dist/css/bootstrap.css',
         'public/lib/bootstrap/dist/css/bootstrap-theme.css',
         'public/lib/chosen/chosen.css',
-        'public/lib/datatables.net-bs/css/dataTables.bootstrap.min.css',
+        'public/lib/datatables.net-bs/css/dataTables.bootstrap.css',
         'public/lib/datatables.net-buttons-bs/css/buttons.bootstrap.min.css'
       ],
       js: [
@@ -25,9 +25,9 @@ module.exports = {
         'public/lib/jquery/dist/jquery.min.js',
         'public/lib/chosen/chosen.jquery.js',
         'public/lib/datatables.net/js/jquery.dataTables.min.js',
-        'public/lib/datatables.net-bs/js/dataTables.bootstrap.min.js',
+        'public/lib/datatables.net-bs/js/button.bootstrap.min.js',
         'public/lib/datatables.net-buttons/js/dataTables.buttons.min.js',
-        'public/lib/datatables.net-buttons-bs/js/dataTables.buttons.min.js',
+        'public/lib/datatables.net-buttons-bs/js/buttons.bootstrap.min.js',
         'public/lib/datatables.net-buttons/js/buttons.html5.min.js',
         'public/lib/datatables.net-buttons/js/buttons.colVis.min.js',
         'public/lib/datatables.net-buttons/js/buttons.flash.min.js',
