@@ -23,7 +23,7 @@ var TaskapplicationSchema = new Schema({
     trim: true
   },
   year: {
-    type: Number,
+    type: String,
     default: 1,
     required: 'Please fill the applicants year'
   },
