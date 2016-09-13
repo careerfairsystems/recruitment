@@ -22,29 +22,29 @@
       // Datatable code
       $('#applicationsList').DataTable({
         dom: 'Bfrtip',
-        "scrollY": 300,
-        "scrollX": true,
+        'scrollY': 300,
+        'scrollX': true,
         stateSave: true,
         buttons: [
-        'copy', 'excel', 'pdf', 'colvis'
+          'copy', 'excel', 'pdf', 'colvis'
         ],
         data: data,
         columns: [
-        { data: 'name', title: "Name" },
-        { data: 'program', title: "Program" },
-        { data: 'year', title: "Year" },
-        { data: 'point', title: "Points" },
-        { data: 'choice1', title: "First choice" },
-        { data: 'choice2', title: "Second choice" },
-        { data: 'choice3', title: "Third choice" },
-        { data: 'attendGasque', title: "Attend Gasque" },
-        { data: 'attendKickoff', title: "Attend Kickoff" },
-        { data: 'driverLicense', title: "DriverLicense" },
-        { data: 'email', title: "Email" },
-        { data: 'phone', title: "Phone" },
-        { data: 'tshirtsize', title: "Tshirtsize" },
-        { data: 'assignedTask', title: "Assigned Task" }
-      ]
+          { data: 'name', title: 'Name' },
+          { data: 'program', title: 'Program' },
+          { data: 'year', title: 'Year' },
+          { data: 'point', title: 'Points' },
+          { data: 'choice1', title: 'First choice' },
+          { data: 'choice2', title: 'Second choice' },
+          { data: 'choice3', title: 'Third choice' },
+          { data: 'attendGasque', title: 'Attend Gasque' },
+          { data: 'attendKickoff', title: 'Attend Kickoff' },
+          { data: 'driverLicense', title: 'DriverLicense' },
+          { data: 'email', title: 'Email' },
+          { data: 'phone', title: 'Phone' },
+          { data: 'tshirtsize', title: 'Tshirtsize' },
+          { data: 'assignedTask', title: 'Assigned Task' }
+        ]
       });
     });
 
