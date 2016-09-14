@@ -20,15 +20,6 @@
         controller: 'SubmittedController',
         controllerAs: 'vm',
       })
-      .state('taskapplications.mylist', {
-        url: '/mylist',
-        templateUrl: 'modules/taskapplications/client/views/list-taskapplications.client.view.html',
-        controller: 'MyTaskapplicationsListController',
-        controllerAs: 'vm',
-        data: {
-          pageTitle: 'Taskapplications List'
-        }
-      })
       .state('taskapplications.list', {
         url: '',
         templateUrl: 'modules/taskapplications/client/views/list-taskapplications.client.view.html',
