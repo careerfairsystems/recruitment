@@ -4,22 +4,49 @@
   </div>
  <div class="row">
     <div class="jumbotron">
-      <table id="applicationsList" class="table table-striped table-bordered dt-responsive nowrap" width="100%"></table>
+      <table id="applicationsList" class="table table-striped compact table-bordered nowrap" >
+        <thead>
+          <tr>
+            <th></th>
+            <th>Created</th>
+            <th>Name</th>
+            <th>Program</th>
+            <th>Year</th>
+            <th>Points</th>
+            <th>First Choice</th>
+            <th>Second Choice</th>
+            <th>Third Choice</th>
+            <th>Attend Gasque</th>
+            <th>Attend Kickoff</th>
+            <th>Driver License</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Tshirtsize</th>
+            <th>Assigned Task</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th></th>
+            <th>Created</th>
+            <th>Name</th>
+            <th>Program</th>
+            <th>Year</th>
+            <th>Points</th>
+            <th>First Choice</th>
+            <th>Second Choice</th>
+            <th>Third Choice</th>
+            <th>Attend Gasque</th>
+            <th>Attend Kickoff</th>
+            <th>Driver License</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Tshirtsize</th>
+            <th>Assigned Task</th>
+          </tr>
+        </tfoot>
+      </table>
     </div>
-  </div>
-  <div class="list-group">
-    <a data-ng-repeat="taskapplication in vm.taskapplications"
-       data-ui-sref="taskapplications.view({ taskapplicationId: taskapplication._id, taskgroupId: taskapplication.taskgroup })"
-       class="list-group-item">
-      <small class="list-group-item-text">
-        Posted on
-        <span data-ng-bind="taskapplication.created | date:'mediumDate'"></span>
-        by
-        <span data-ng-if="taskapplication.user" data-ng-bind="taskapplication.user.displayName"></span>
-        <span data-ng-if="!taskapplication.user">Deleted User</span>
-      </small>
-      <h4 class="list-group-item-heading" data-ng-bind="taskapplication.name"></h4>
-    </a>
   </div>
   <button ng-json-excel ng-click="myOnclickFunction(datafields, vm.taskapplications)" class="btn btn-warning">Exportera till csv-fil</button>
   <!--button ng-json-excel data="vm.taskapplications" report-fields="{name: 'Name', program: 'Program', email: 'Email', phone: 'Phone', foodpref: 'Food preference', motivation: 'Motivation'}", filename =" 'export-excel' " class="css-class">Exportera till Excel</button-->
