@@ -81,15 +81,13 @@
         </div>
         <!-- Tshirt size -->
         <div class="form-group" show-errors>
-          <label class="control-label col-sm-2" for="tshirtsize">Tröjstorlek / Tshirt Size</label>
+          <label class="control-label col-sm-2" for="tshirtsize">Tröjstorlek / Tshirt Size  (unisex)</label>
           <div class="col-sm-10">
               <select name="tshirtsize" ng-model="tshirtsize" class="size_select_box">
-                <option value="XS">XS</option>
                 <option value="S">S</option>
                 <option value="M">M</option>
                 <option value="L">L</option>
                 <option value="XL">XL</option>
-                <option value="XXL">XXL</option>
               </select>
           </div>
           <div ng-messages="vm.form.taskapplicationForm.tshirtsize.$error" role="alert">
