@@ -19,12 +19,23 @@
         application.choice1 = application.choices[0].choice || '';
         application.choice2 = application.choices[1].choice || '';
         application.choice3 = application.choices[2].choice || '';
+        if(application.chosenCompanies && application.chosenCompanies.length > 0 ){
+          application.companies = application.chosenCompanies.reduce(function(previousValue, currentValue, currentIndex) {
+            if(currentIndex === 0) {
+              return currentValue.name;
+            }
+            return previousValue + ', ' +  currentValue.name;
+          }, ''); 
+        } else {
+          application.companies = '';
+        }
       });
       // Datatable code
       // Setup - add a text input to each footer cell
-      $('#applicationsList tfoot th:not(:first)').each(function () {
+      $('#applicationsList thead tr:first th:not(:first)').each(function (index) {
         var title = $(this).text();
-        $(this).html('<input class="form-control" type="text" placeholder="Search '+title+'" />');
+        var pos = index + 1;
+        $(this).html('<input class="form-control" id="col-search-'+pos+'" type="text" placeholder="Search '+title+'" />');
       });  
 
       var table = $('#applicationsList').DataTable({
@@ -53,6 +64,7 @@
           { data: 'choice1' },
           { data: 'choice2' },
           { data: 'choice3' },
+          { data: 'companies' },
           { data: 'attendGasque' },
           { data: 'attendKickoff' },
           { data: 'driverLicense' },
@@ -64,9 +76,9 @@
       });
             
       // Apply the search
-      table.columns().every(function () {
+      table.columns().every(function (index) {
         var that = this;
-        $('input', this.footer()).on('keyup change', function () {
+        $('input#col-search-'+index).on('keyup change', function () {
           if (that.search() !== this.value) {
             that.search(this.value).draw();
           }
