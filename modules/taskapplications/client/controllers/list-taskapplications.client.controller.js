@@ -15,16 +15,16 @@
       vm.taskapplications = data;
       angular.forEach(vm.taskapplications, function(application, key) {
         application.nr = 1 + key;
-        application.date = $filter('date')(application.created, "yyyy-MM-dd");
+        application.date = $filter('date')(application.created, 'yyyy-MM-dd');
         application.choice1 = application.choices[0].choice || '';
         application.choice2 = application.choices[1].choice || '';
         application.choice3 = application.choices[2].choice || '';
-        if(application.chosenCompanies && application.chosenCompanies.length > 0 ){
+        if(application.chosenCompanies && application.chosenCompanies.length > 0){
           application.companies = application.chosenCompanies.reduce(function(previousValue, currentValue, currentIndex) {
             if(currentIndex === 0) {
               return currentValue.name;
             }
-            return previousValue + ', ' +  currentValue.name;
+            return previousValue + ', ' + currentValue.name;
           }, ''); 
         } else {
           application.companies = '';
