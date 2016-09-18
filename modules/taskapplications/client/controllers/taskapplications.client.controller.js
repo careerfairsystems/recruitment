@@ -25,8 +25,8 @@
     vm.programs = [];
 
 
-    vm.sizes = ['XS','S','M','L','XL','XXL'];
-    vm.taskapplication.tshirtsize = 'XS';
+    vm.sizes = ['S','M','L','XL','XXL'];
+    vm.taskapplication.tshirtsize = 'S';
 
 
     // Create sorting function for companies.
