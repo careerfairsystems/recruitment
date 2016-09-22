@@ -28,6 +28,12 @@
     vm.sizes = ['S','M','L','XL','XXL'];
     vm.taskapplication.tshirtsize = 'S';
 
+    // Update view with Model
+    $scope.tshirtsize = 'S';
+    $scope.driverLicense = vm.taskapplication.driverLicense ? 'yes' : 'no';
+    $scope.attendGasque = vm.taskapplication.attendGasque ? 'yes' : 'no';
+    $scope.attendKickoff = vm.taskapplication.attendKickoff ? 'yes' : 'no';
+
 
     // Create sorting function for companies.
     function compare(a,b) {
