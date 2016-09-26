@@ -6,10 +6,44 @@
     .module('taskapplications')
     .controller('TaskapplicationsListController', TaskapplicationsListController);
 
-  TaskapplicationsListController.$inject = ['$scope' ,'TaskapplicationsService', '$filter'];
+  TaskapplicationsListController.$inject = ['$scope' ,'TaskapplicationsService', '$filter', '$compile'];
 
-  function TaskapplicationsListController($scope, TaskapplicationsService, $filter) {
+  function TaskapplicationsListController($scope, TaskapplicationsService, $filter, $compile) {
     var vm = this;
+
+    // Modal
+    vm.current = {};
+    vm.currentIndex = -1;
+    var modal = document.getElementById('myModal');
+    //var btn = $('#myBtn');
+    var btn = document.getElementById("myBtn");
+    var closeBtn = document.getElementsByClassName("close")[0];
+    vm.openApplication = function(index) {
+      vm.currentIndex = index;
+      $scope.current = vm.taskapplications[index];
+      modal.style.display = "block";
+    };
+    closeBtn.onclick = function() {
+      modal.style.display = "none";
+      vm.currentIndex = -1;
+    };
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    };
+    vm.updateApplication = function(){
+      // Update DB.
+      TaskapplicationsService.update(vm.taskapplications[vm.currentIndex]);
+      // Recreate datatable
+      vm.table.destroy();
+      vm.createDatatable(vm.taskapplications);
+      // Hide modal
+      modal.style.display = "none";
+    };
+
+
 
     TaskapplicationsService.query(function(data) {
       vm.taskapplications = data;
@@ -38,7 +72,11 @@
         $(this).html('<input class="form-control" id="col-search-'+pos+'" type="text" placeholder="Search '+title+'" />');
       });  
 
-      var table = $('#applicationsList').DataTable({
+      vm.createDatatable(data);
+    });
+
+    vm.createDatatable = function(data){
+      vm.table = $('#applicationsList').DataTable({
         dom: 'Bfrtip',
         scrollX: true,
         scrollCollapse: true,
@@ -55,12 +93,15 @@
           { data: 'date' },
           { data: 'name',
             'fnCreatedCell': function (nTd, sData, oData, iRow, iCol) {
-              $(nTd).html('<a href="/taskapplications/'+oData._id+'/'+oData.taskgroup+'">'+sData+'</a>');
+              $(nTd).html('<button class="btn-link" data-ng-click="vm.openApplication('+ iRow+')">'+sData+'</button>');
+              // VIKTIG: för att ng-click ska kompileras och finnas.
+              $compile(nTd)($scope);
             }
           },
+          { data: 'point' },
+          { data: 'assignedTask' },
           { data: 'program' },
           { data: 'year' },
-          { data: 'point' },
           { data: 'choice1' },
           { data: 'choice2' },
           { data: 'choice3' },
@@ -70,13 +111,12 @@
           { data: 'attendKickoff' },
           { data: 'email' },
           { data: 'phone' },
-          { data: 'tshirtsize' },
-          { data: 'assignedTask' }
+          { data: 'tshirtsize' }
         ]
       });
             
       // Apply the search
-      table.columns().every(function (index) {
+      vm.table.columns().every(function (index) {
         var that = this;
         $('input#col-search-'+index).on('keyup change', function () {
           if (that.search() !== this.value) {
@@ -84,8 +124,7 @@
           }
         });
       });
-
-    });
+    };
 
     // For exporting to excel
     $scope.datafields = {
@@ -99,6 +138,5 @@
       'choice2': 'Second Choice',
       'choice3': 'Third Choice'
     };
-
   }
 })();

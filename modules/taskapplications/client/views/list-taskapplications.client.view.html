@@ -2,6 +2,106 @@
   <div class="page-header">
     <h1>Taskapplications</h1>
   </div>
+  <div class="row">
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">×</span>
+        <h2>{{ current.name }}</h2>
+        <button class="btn btn-primary pull-right" ng-click="vm.updateApplication()">Update</button>
+        <a class="btn btn-primary pull-right" href="/taskapplications/{{current._id}}/{{current.taskgroup}}">Open</a>
+      </div>
+      <div class="modal-body">
+        <!-- Point -->
+        <div class="row">
+          <label for="point" class="col-sm-2">Points</label>
+          <div class="col-sm-10">
+            <input type="number" id="pointInput" class="form-control" ng-model="current.point" />
+          </div>
+        </div>
+        <!-- Assigned Task -->
+        <div class="row">
+          <label for="point" class="col-sm-2">Assigned Task</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" ng-model="current.assignedTask"/>
+          </div>
+        </div>
+        <!-- Task Choices -->
+        <div class="row">
+          <label for="firstchoice" class="col-sm-2">Task Choices</label>
+          <div class="col-sm-10">
+            <button class="btn btn-sm btn-default">
+              1. {{ current.choices[0].choice }}
+            </button>
+            <button class="btn btn-sm btn-default">
+              2. {{ current.choices[1].choice }}
+            </button>
+            <button class="btn btn-sm btn-default">
+              3. {{ current.choices[2].choice }}
+            </button>
+          </div>
+        </div>
+        <!-- Motivation -->
+        <div class="row">
+          <label for="motivation" class="col-sm-2">Motivation</label>
+          <div class="col-sm-10">
+            <p data-ng-bind="current.motivation"></p>
+          </div>
+        </div>
+        <!--Chosen companies -->
+        <div class="row" ng-show="current.chosenCompanies.length > 0">
+          <label for="companies" class="col-sm-2">Chosen companies</label>
+          <div ng-show="current.chosenCompanies.length != 0" class="col-sm-10">
+            <button class="btn btn-sm btn-default" ng-repeat = "company in current.chosenCompanies track by $index">
+              {{ $index+1 }}. {{company.name}}
+            </button>
+          </div>
+        </div>
+        <h3>
+          Facts
+        </h3>
+        <table class="table compact table-bordered nowrap">
+          <tr>
+            <td style="width: 125px"><strong>Program</strong></td>
+            <td><span data-ng-bind="current.program"></span></td>
+            <td style="width: 125px"><strong>Tshirt size</strong></td>
+            <td><span data-ng-bind="current.tshirtsize"></span></td>
+          </tr>
+          <tr>
+            <td><strong>Year</strong></td>
+            <td><span data-ng-bind="current.year"></span></td>
+            <td><strong>Email</strong></td>
+            <td><span data-ng-bind="current.email"></span></td>
+          </tr>
+          <tr>
+            <td><strong>Phone</strong></td>
+            <td><span data-ng-bind="current.phone"></span></td>
+            <td><strong>Foodpref</strong></td>
+            <td><span data-ng-bind="current.foodpref"></span></td>
+          </tr>
+          <tr>
+            <td><strong>International</strong></td>
+            <td ng-class="{ success: current.internationalStudent, danger: !current.internationalStudent}"><span data-ng-bind="current.internationalStudent"></span></td>
+            <td><strong>Driver License</strong></td>
+            <td ng-class="{ success: current.driverLicense, danger: !current.driverLicense}"><span data-ng-bind="current.driverLicense"></span></td>
+          </tr>
+          <tr>
+            <td><strong>Attend Kickoff</strong></td>
+            <td ng-class="{ success: current.attendKickoff, danger: !current.attendKickoff}"><span data-ng-bind="current.attendKickoff"></span></td>
+            <td><strong>Attend Gasque</strong></td>
+            <td ng-class="{ success: current.attendGasque, danger: !current.attendGasque}"><span data-ng-bind="current.attendGasque"></span></td>
+          </tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="vm.updateApplication()">Update</button>
+        <h3>Modal Footer</h3>
+      </div>
+    </div>
+  </div>
+  </div>
  <div class="row">
     <div class="jumbotron">
       <table id="applicationsList" class="table table-striped compact table-bordered nowrap" >
@@ -10,9 +110,10 @@
             <th></th>
             <th>Created</th>
             <th>Name</th>
+            <th>Points</th>
+            <th>Assigned Task</th>
             <th>Program</th>
             <th>Year</th>
-            <th>Points</th>
             <th>First Choice</th>
             <th>Second Choice</th>
             <th>Third Choice</th>
@@ -23,15 +124,15 @@
             <th>Email</th>
             <th>Phone</th>
             <th>Tshirtsize</th>
-            <th>Assigned Task</th>
           </tr>
           <tr>
             <th></th>
             <th>Created</th>
             <th>Name</th>
+            <th>Points</th>
+            <th>Assigned Task</th>
             <th>Program</th>
             <th>Year</th>
-            <th>Points</th>
             <th>First Choice</th>
             <th>Second Choice</th>
             <th>Third Choice</th>
@@ -42,7 +143,6 @@
             <th>Email</th>
             <th>Phone</th>
             <th>Tshirtsize</th>
-            <th>Assigned Task</th>
           </tr>
         </thead>
         <tfoot>
@@ -50,9 +150,10 @@
             <th></th>
             <th>Created</th>
             <th>Name</th>
+            <th>Points</th>
+            <th>Assigned Task</th>
             <th>Program</th>
             <th>Year</th>
-            <th>Points</th>
             <th>First Choice</th>
             <th>Second Choice</th>
             <th>Third Choice</th>
@@ -63,7 +164,6 @@
             <th>Email</th>
             <th>Phone</th>
             <th>Tshirtsize</th>
-            <th>Assigned Task</th>
           </tr>
         </tfoot>
       </table>
