@@ -14,6 +14,10 @@
         url: '/taskapplications',
         template: '<ui-view/>'
       })
+      .state('taskapplications.closed', {
+        url: '/closed',
+        templateUrl: 'modules/taskapplications/client/views/closed-taskapplication.client.view.html',
+      })
       .state('taskapplications.submitted', {
         url: '/submitted/:name/:email',
         templateUrl: 'modules/taskapplications/client/views/submitted-taskapplication.client.view.html',
