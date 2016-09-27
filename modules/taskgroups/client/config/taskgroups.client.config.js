@@ -29,5 +29,12 @@
       state: 'taskgroups.create',
       roles: ['admin']
     });
+
+    Menus.addSubMenuItem('topbar', 'taskgroups', {
+      title: 'Set active Taskgroup',
+      state: 'taskgroups.active',
+      roles: ['admin']
+    });
+
   }
 })();

@@ -8,6 +8,10 @@ var taskgroupsPolicy = require('../policies/taskgroups.server.policy'),
 
 module.exports = function(app) {
   // Taskgroups Routes
+
+  app.route('/api/taskgroups/active').all(taskgroupsPolicy.isAllowed)
+    .get(taskgroups.getActive);
+
   app.route('/api/taskgroups').all(taskgroupsPolicy.isAllowed)
     .get(taskgroups.list)
     .post(taskgroups.create);

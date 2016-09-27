@@ -20,6 +20,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/taskgroups/:taskgroupId',
       permissions: '*'
+    }, {
+      resources: '/api/taskgroups/active',
+      permissions: '*'
     }]
   }, {
     roles: ['user'],
@@ -29,6 +32,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/taskgroups/:taskgroupId',
       permissions: ['get']
+    }, {
+      resources: '/api/taskgroups/active',
+      permissions: ['get']
     }]
   }, {
     roles: ['guest'],
@@ -37,6 +43,9 @@ exports.invokeRolesPolicies = function () {
       permissions: ['get']
     }, {
       resources: '/api/taskgroups/:taskgroupId',
+      permissions: ['get']
+    }, {
+      resources: '/api/taskgroups/active',
       permissions: ['get']
     }]
   }]);

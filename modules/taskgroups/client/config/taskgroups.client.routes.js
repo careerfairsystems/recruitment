@@ -36,6 +36,15 @@
           pageTitle : 'Taskgroups Create'
         }
       })
+      .state('taskgroups.active', {
+        url: '/active',
+        templateUrl: 'modules/taskgroups/client/views/active-taskgroup.client.view.html',
+        controller: 'ActiveTaskgroupsController',
+        controllerAs: 'vm',
+        resolve: {
+          taskgroupListResolve: getTaskgroupList
+        }
+      })
       .state('taskgroups.edit', {
         url: '/:taskgroupId/edit',
         templateUrl: 'modules/taskgroups/client/views/form-taskgroup.client.view.html',
@@ -61,6 +70,13 @@
           pageTitle: 'Taskgroup {{ articleResolve.name }}'
         }
       });
+  }
+
+
+  getTaskgroupList.$inject = ['$stateParams', 'TaskgroupsService'];
+
+  function getTaskgroupList($stateParams, TaskgroupsService) {
+    return TaskgroupsService.query().$promise;
   }
 
   getTaskgroup.$inject = ['$stateParams', 'TaskgroupsService'];

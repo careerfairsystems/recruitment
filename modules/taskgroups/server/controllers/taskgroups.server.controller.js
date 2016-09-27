@@ -76,11 +76,27 @@ exports.delete = function(req, res) {
     }
   });
 };
+/**
+  * Get active taskgroup
+  */
+
+exports.getActive = function(req, res) {
+  Taskgroup.find({ active: true }).exec(function(err, applicationsettings) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.jsonp(applicationsettings[0]);
+    }
+  });
+};
+
 
 /**
  * List of Taskgroups
  */
-exports.list = function(req, res) { 
+exports.list = function(req, res) {
   Taskgroup.find().sort('-created').populate('user', 'displayName').exec(function(err, taskgroups) {
     if (err) {
       return res.status(400).send({

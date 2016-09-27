@@ -6,31 +6,52 @@
     .module('taskapplications')
     .controller('TaskapplicationsListController', TaskapplicationsListController);
 
-  TaskapplicationsListController.$inject = ['$scope' ,'TaskapplicationsService', '$filter', '$compile'];
+  TaskapplicationsListController.$inject = ['$scope' ,'TaskapplicationsService', '$filter', '$compile', '$timeout'];
 
-  function TaskapplicationsListController($scope, TaskapplicationsService, $filter, $compile) {
+  function TaskapplicationsListController($scope, TaskapplicationsService, $filter, $compile, $timeout) {
     var vm = this;
+
+    //get Task
+//    $timeout(function () {
+        // Chosen methods
+//      $(".task_select_box").chosen({
+//        no_results_text: "Oops, nothing found!",
+//        max_selected_options: 5,
+//        width: "100%"
+//      });
+//    }, 0, false);
+
+
+//    vm.possibleTasks = [];
+//    vm.task = {};
+//    $('.task_select_box').on('change', function(evt, params) {
+//      var element = $('.task_select_box');
+//      if(params.selected){
+//        vm.task = vm.possibleTasks[params.selected];
+//      } else if(params.deselected) {
+//        vm.task =
+//    });
 
     // Modal
     vm.current = {};
     vm.currentIndex = -1;
     var modal = document.getElementById('myModal');
     //var btn = $('#myBtn');
-    var btn = document.getElementById("myBtn");
-    var closeBtn = document.getElementsByClassName("close")[0];
+    var btn = document.getElementById('myBtn');
+    var closeBtn = document.getElementsByClassName('close')[0];
     vm.openApplication = function(index) {
       vm.currentIndex = index;
       $scope.current = vm.taskapplications[index];
-      modal.style.display = "block";
+      modal.style.display = 'block';
     };
     closeBtn.onclick = function() {
-      modal.style.display = "none";
+      modal.style.display = 'none';
       vm.currentIndex = -1;
     };
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
       if (event.target === modal) {
-        modal.style.display = "none";
+        modal.style.display = 'none';
       }
     };
     vm.updateApplication = function(){
@@ -40,7 +61,7 @@
       vm.table.destroy();
       vm.createDatatable(vm.taskapplications);
       // Hide modal
-      modal.style.display = "none";
+      modal.style.display = 'none';
     };
 
 
@@ -59,7 +80,7 @@
               return currentValue.name;
             }
             return previousValue + ', ' + currentValue.name;
-          }, ''); 
+          }, '');
         } else {
           application.companies = '';
         }
@@ -70,7 +91,7 @@
         var title = $(this).text();
         var pos = index + 1;
         $(this).html('<input class="form-control" id="col-search-'+pos+'" type="text" placeholder="Search '+title+'" />');
-      });  
+      });
 
       vm.createDatatable(data);
     });
@@ -114,7 +135,7 @@
           { data: 'tshirtsize' }
         ]
       });
-            
+
       // Apply the search
       vm.table.columns().every(function (index) {
         var that = this;
