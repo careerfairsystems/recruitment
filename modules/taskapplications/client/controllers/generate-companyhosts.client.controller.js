@@ -12,7 +12,6 @@
   function GenerateCompanyHostsController ($scope, $state, companyListResolve, taskapplicationsResolve, TaskapplicationsService) {
     var vm = this;
 
-    // TODO: Get all companies and applications
     vm.companies = companyListResolve;
     vm.taskapplications = taskapplicationsResolve;
 
@@ -42,11 +41,11 @@
       vm.companyHosts = vm.taskapplications.filter(hasChosenCompanies);
 
 
-      // Assign random points, TODO: Remove when production.
+      // Assign random points, Remove when production.
       function assignPoint(a){
         a.point = Math.floor(Math.random() * 200);
       }
-      vm.companyHosts.forEach(assignPoint);
+      //vm.companyHosts.forEach(assignPoint);
 
       // Sort taskapplications after points.
       function hasHighestPoints (a, b){
