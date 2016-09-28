@@ -77,6 +77,9 @@ var TaskapplicationSchema = new Schema({
     default: false,
     required: 'Please fill if the applicant can attend the host kickoff'
   }, 
+  assignedCompany: {
+    type: String
+  },
   chosenCompanies: [{
     name: String,
     order: Number

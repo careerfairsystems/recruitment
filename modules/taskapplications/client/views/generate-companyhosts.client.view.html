@@ -1,6 +1,16 @@
 <section>
 
-  <button class="form-group">Generate</button>
+  <button ng-click="vm.assignCompanies()" class="form-group btn btn-lg center-block btn-primary">Generate</button>
+  <button ng-click="vm.removeAssignments()" class="form-group btn btn-lg center-block btn-danger">Remove all assigned companies</button>
+
+
+  <table>
+    <tr ng-repeat="application in vm.assignedHosts">
+      <td>{{ application.name }}</td>
+      <td>{{ application.point }}</td>
+      <td>{{ application.assignedCompany }}</td>
+    </tr>
+  </table>
 
 
 </section>

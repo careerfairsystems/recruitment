@@ -77,6 +77,7 @@
     };
 
     TaskapplicationsService.query(function(data) {
+      data = data.filter(function (d){ return d.assignedCompany; });
       vm.taskapplications = data;
       angular.forEach(vm.taskapplications, function(application, key) {
         application.nr = 1 + key;
@@ -84,6 +85,7 @@
         application.choice1 = application.choices[0].choice || '';
         application.choice2 = application.choices[1].choice || '';
         application.choice3 = application.choices[2].choice || '';
+        application.assignedCompany = application.assignedCompany || '';
         if(application.chosenCompanies && application.chosenCompanies.length > 0){
           application.companies = application.chosenCompanies.reduce(function(previousValue, currentValue, currentIndex) {
             if(currentIndex === 0) {
@@ -131,6 +133,7 @@
           },
           { data: 'point' },
           { data: 'assignedTask' },
+          { data: 'assignedCompany' },
           { data: 'program' },
           { data: 'year' },
           { data: 'choice1' },
