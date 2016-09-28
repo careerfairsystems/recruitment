@@ -1,0 +1,35 @@
+<section>
+  <div class="page-header">
+    <h1>Choose an active taskgroup</h1>
+  </div>
+
+    <!-- Selected Setting -->
+    <div class="setting list-group-item" >
+      <div ng-show="taskgroup">
+        <h4 class="list-group-item-heading" data-ng-bind="taskgroup.name"></h4>
+        <br>
+        <h5 class><strong>English name for taskgroup:</strong></h5>
+        <span data-ng-bind="taskgroup.engname"></span>
+        <h5><strong>Description:</strong></h5>
+        <span data-ng-bind="taskgroup.description"></span>
+        <h5><strong>Active status:</strong></h5>
+        <span data-ng-bind="taskgroup.active"></span>
+        <a class="btn btn-primary pull-right" ng-click="setActive(taskgroup)">Set as active</a>
+        <br>
+        <br>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="taskgroups list-group">
+        <a data-ng-repeat="taskgroup in vm.taskgroups"
+          ng-click="viewTaskgroup(taskgroup)"
+          class="list-group-item">
+          <h4 class="list-group-item-heading" data-ng-bind="taskgroup.name"></h4>
+        </a>
+      </div>
+      <div class="alert alert-warning text-center" data-ng-if="vm.taskgroups.$resolved && !vm.taskgroups.length">
+        No Taskgroups yet, why don't you <a data-ui-sref="taskgroups.create">create one</a>?
+      </div>
+    </div>
+</section>
