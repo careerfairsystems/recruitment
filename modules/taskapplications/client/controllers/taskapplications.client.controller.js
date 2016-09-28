@@ -24,6 +24,12 @@
     vm.cmphst = 'Company';
     vm.programs = [];
 
+    vm.applicationPeriodClosed = true;
+    if(vm.applicationPeriodClosed){
+      $state.go('taskapplications.closed');
+    }
+
+
 
     vm.sizes = ['S','M','L','XL','XXL'];
     vm.taskapplication.tshirtsize = 'S';

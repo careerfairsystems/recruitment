@@ -12,7 +12,7 @@ module.exports = function(app) {
     .get(students.list)
     .post(students.create);
 
-  app.route('/api/students/active').get(students.active);
+  app.route('/api/students/active').get(students.active).post(students.active);
   
   app.route('/api/students/:studentId').all(studentsPolicy.isAllowed)
     .get(students.read)
