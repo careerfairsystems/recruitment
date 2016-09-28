@@ -38,7 +38,7 @@
         return application.chosenCompanies.length > 0;
       }
       shuffle(vm.taskapplications);
-      vm.companyHosts = vm.taskapplications.filter(hasChosenCompanies);
+      vm.companyHosts = vm.taskapplications.filter(isCompanyHost);
 
 
       // Assign random points, Remove when production.
