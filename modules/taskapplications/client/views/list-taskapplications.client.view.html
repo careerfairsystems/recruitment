@@ -25,7 +25,7 @@
         <div class="row">
           <label for="point" class="col-sm-2">Assigned Task</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" ng-model="current.assignedTask"/>
+            <select class="form-control" ng-options="task for task in vm.tasks" ng-model="current.assignedTask" class="task_select_box"></select>
           </div>
         </div>
         <!-- Task Choices -->

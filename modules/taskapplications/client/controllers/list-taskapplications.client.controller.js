@@ -6,31 +6,20 @@
     .module('taskapplications')
     .controller('TaskapplicationsListController', TaskapplicationsListController);
 
-  TaskapplicationsListController.$inject = ['$scope' ,'TaskapplicationsService', '$filter', '$compile', '$timeout'];
+  TaskapplicationsListController.$inject = ['$http', '$scope' ,'TaskapplicationsService', '$filter', '$compile', '$timeout', 'activeTaskgroupResolve'];
 
-  function TaskapplicationsListController($scope, TaskapplicationsService, $filter, $compile, $timeout) {
+  function TaskapplicationsListController($http, $scope, TaskapplicationsService, $filter, $compile, $timeout, activeTaskgroupResolve) {
     var vm = this;
+    vm.activeTaskgroup = activeTaskgroupResolve;
 
+    vm.tasks = [];
+    vm.tasks.push("Ej Vald");
+    for(var i = 0; i < vm.activeTaskgroup.tasks.length; i++) {
+      vm.tasks.push(vm.activeTaskgroup.tasks[i].name);
+    }
     //get Task
-//    $timeout(function () {
-        // Chosen methods
-//      $(".task_select_box").chosen({
-//        no_results_text: "Oops, nothing found!",
-//        max_selected_options: 5,
-//        width: "100%"
-//      });
-//    }, 0, false);
 
-
-//    vm.possibleTasks = [];
-//    vm.task = {};
-//    $('.task_select_box').on('change', function(evt, params) {
-//      var element = $('.task_select_box');
-//      if(params.selected){
-//        vm.task = vm.possibleTasks[params.selected];
-//      } else if(params.deselected) {
-//        vm.task =
-//    });
+//FORTSÄTT HÄR!!
 
     // Modal
     vm.current = {};
@@ -42,6 +31,29 @@
     vm.openApplication = function(index) {
       vm.currentIndex = index;
       $scope.current = vm.taskapplications[index];
+
+
+      if($scope.current.assignedTask){
+        vm.task = $scope.current.assignedTask;
+      }
+
+      $timeout(function () {
+          // Chosen methods
+        $(".task_select_box").chosen({
+          no_results_text: "Oops, nothing found!",
+          max_selected_options: 5,
+          width: "100%"
+        });
+      }, 0, false);
+
+      $('.task_select_box').on('change', function(evt, params) {
+        var element = $('.task_select_box');
+        if(params.selected){
+          $scope.current.assignedTask = vm.tasks[params.selected];
+        } else if(params.deselected) {
+          $scope.current.assignedTask = {};
+        }
+      });
       modal.style.display = 'block';
     };
     closeBtn.onclick = function() {
@@ -63,8 +75,6 @@
       // Hide modal
       modal.style.display = 'none';
     };
-
-
 
     TaskapplicationsService.query(function(data) {
       vm.taskapplications = data;

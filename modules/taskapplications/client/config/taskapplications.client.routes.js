@@ -27,6 +27,9 @@
         controllerAs: 'vm',
         data: {
           pageTitle: 'Taskapplications List'
+        },
+        resolve: {
+          activeTaskgroupResolve : getActiveTaskgroup
         }
       })
       .state('taskapplications.create', {
@@ -69,6 +72,20 @@
           pageTitle: 'Taskapplication {{ articleResolve.name }}'
         }
       });
+  }
+
+  getActiveTaskgroup.$inject = ['$stateParams', '$http'];
+
+  function getActiveTaskgroup($stateParams, $http) {
+    return $http({
+      method: 'GET',
+      url: '/api/taskgroups/active'
+    }).then(function successCallback(response) {
+      return response.data;
+    }, function errorCallback(response) {
+      console.log('ERROR: ' + response);
+    });
+
   }
 
   getTaskgroup.$inject = ['$stateParams', 'TaskgroupsService'];

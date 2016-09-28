@@ -72,7 +72,7 @@
       }, 0, false);
 
     });
-    
+
     // Update values
     if (!vm.taskapplication._id) {
       vm.taskapplication.taskgroup = vm.taskgroup._id;
@@ -89,7 +89,7 @@
       vm.secondchoice = vm.taskapplication.choices[1].choice;
       vm.thirdchoice = vm.taskapplication.choices[2].choice;
     }
-    
+
     $('.size_select_box').chosen({
       no_results_text: 'Oops, nothing found!',
       width: '100%'
@@ -113,7 +113,7 @@
       }
       console.log(vm.chosenCompanies);
     });
-  
+
 
     vm.filter = false;
     $scope.toggleFilter = function () {
@@ -122,7 +122,7 @@
     };
 
     function updateCompanyList() {
-      vm.displayCompanies = [];        
+      vm.displayCompanies = [];
       vm.companies.forEach(function (c) {
         if(!vm.filter || c.desiredProgramme.indexOf(vm.myProgram) >= 0){
           vm.displayCompanies.push(c);
@@ -130,7 +130,7 @@
       });
     }
 
-    
+
     $scope.goBack = function(){
       if(!vm.taskapplication._id){
         $state.go('taskapplications.view', { taskapplicationId: vm.taskapplication._id, taskgroupId: vm.taskapplication.taskgroup });
@@ -172,7 +172,7 @@
       vm.taskapplication.driverLicense = $scope.driverLicense === 'yes';
       vm.taskapplication.attendGasque = $scope.attendGasque === 'yes';
       vm.taskapplication.attendKickoff = $scope.attendKickoff === 'yes';
-  
+
       // TODO: move create/update logic to service
       if (vm.taskapplication._id) {
         vm.taskapplication.$update(successCallbackApplication, errorCallback);
