@@ -75,7 +75,29 @@
         data:{
           pageTitle: 'Taskapplication {{ articleResolve.name }}'
         }
+      })
+      .state('taskapplications.gencompanyhosts', {
+        url: '/generatecompanyhosts',
+        templateUrl: 'modules/taskapplications/client/views/generate-companyhosts.client.view.html',
+        controller: 'GenerateCompanyHostsController',
+        controllerAs: 'vm',
+        resolve: {
+          companyListResolve: getCompanyList,
+          taskapplicationsResolve: getTaskapplications
+        }
       });
+  }
+
+  getCompanyList.$inject = ['$stateParams', 'CompaniesService'];
+
+  function getCompanyList($stateParams, CompaniesService) {
+    return CompaniesService.query().$promise;
+  }
+
+  getTaskapplications.$inject = ['$stateParams', 'TaskapplicationsService'];
+
+  function getTaskapplications($stateParams, TaskapplicationsService){
+    return TaskapplicationsService.query().$promise;
   }
 
   getActiveTaskgroup.$inject = ['$stateParams', '$http'];

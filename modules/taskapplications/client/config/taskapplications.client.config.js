@@ -22,5 +22,11 @@
       state: 'taskapplications.list',
       roles: ['admin']
     });
+
+    Menus.addSubMenuItem('topbar', 'taskapplications', {
+      title: 'Generate Companyhosts',
+      state: 'taskapplications.gencompanyhosts',
+      roles: ['admin']
+    });
   }
 })();
