@@ -77,7 +77,6 @@
     };
 
     TaskapplicationsService.query(function(data) {
-      data = data.filter(function (d){ return d.assignedCompany; });
       vm.taskapplications = data;
       angular.forEach(vm.taskapplications, function(application, key) {
         application.nr = 1 + key;
