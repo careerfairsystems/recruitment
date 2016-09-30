@@ -6,37 +6,29 @@
     .module('taskapplications')
     .controller('TaskapplicationsListController', TaskapplicationsListController);
 
-  TaskapplicationsListController.$inject = ['$http', '$scope' ,'TaskapplicationsService', '$filter', '$compile', '$timeout', 'activeTaskgroupResolve'];
+  TaskapplicationsListController.$inject = ['$http', '$scope' ,'TaskapplicationsService', '$filter', '$compile', '$timeout', 'activeTaskgroupResolve', 'CompaniesService'];
 
-  function TaskapplicationsListController($http, $scope, TaskapplicationsService, $filter, $compile, $timeout, activeTaskgroupResolve) {
+  function TaskapplicationsListController($http, $scope, TaskapplicationsService, $filter, $compile, $timeout, activeTaskgroupResolve, CompaniesService) {
     var vm = this;
     vm.activeTaskgroup = activeTaskgroupResolve;
 
+    vm.task = "";
+    vm.company = "";
     vm.tasks = [];
-    vm.tasks.push("Ej Vald");
+    vm.tasks.push("Not assigned");
     for(var i = 0; i < vm.activeTaskgroup.tasks.length; i++) {
       vm.tasks.push(vm.activeTaskgroup.tasks[i].name);
     }
     //get Task
-
-//FORTSÄTT HÄR!!
-
-    // Modal
-    vm.current = {};
-    vm.currentIndex = -1;
-    var modal = document.getElementById('myModal');
-    //var btn = $('#myBtn');
-    var btn = document.getElementById('myBtn');
-    var closeBtn = document.getElementsByClassName('close')[0];
-    vm.openApplication = function(index) {
-      vm.currentIndex = index;
-      $scope.current = vm.taskapplications[index];
-
-
-      if($scope.current.assignedTask){
-        vm.task = $scope.current.assignedTask;
-      }
-
+    vm.companies = [];
+    CompaniesService.query(function (result){
+      result.sort(function (a,b) {
+        return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1;
+      });
+      vm.companies = ["Not assigned"];
+      result.forEach(function (c){
+        vm.companies.push(c.name);
+      });
       $timeout(function () {
           // Chosen methods
         $(".task_select_box").chosen({
@@ -44,27 +36,71 @@
           max_selected_options: 5,
           width: "100%"
         });
+        $(".company_assigned_select_box").chosen({
+          no_results_text: "Oops, nothing found!",
+          max_selected_options: 5,
+          width: "100%"
+        });
+        $('.task_select_box').on('change', function(evt, params) {
+          if(params.selected){
+            $scope.current.assignedTask = vm.tasks[params.selected];
+          } else if(params.deselected) {
+            $scope.current.assignedTask = {};
+          }
+          $scope.$apply();
+        });
+        $('.company_assigned_select_box').on('change', function(evt, params) {
+          if(params.selected) {
+            $scope.current.assignedCompany = vm.companies[params.selected];
+          } else if(params.deselected) {
+            $scope.current.assignedCompany = "";
+          }
+          $scope.$apply();
+        });
       }, 0, false);
+    });
 
-      $('.task_select_box').on('change', function(evt, params) {
-        var element = $('.task_select_box');
-        if(params.selected){
-          $scope.current.assignedTask = vm.tasks[params.selected];
-        } else if(params.deselected) {
-          $scope.current.assignedTask = {};
-        }
-      });
+    // Modal
+    vm.current = {};
+    vm.currentIndex = -1;
+    var modal = document.getElementById('myModal');
+    var btn = document.getElementById('myBtn');
+    var closeBtn = document.getElementsByClassName('close')[0];
+    vm.openApplication = function(index) {
+      vm.currentIndex = index;
+      $scope.current = vm.taskapplications[index];
+
+      vm.task = $scope.current.assignedTask || 'Not assigned';
+      vm.company = $scope.current.assignedCompany || 'Not assigned';
+      $('.task_select_box').val($('option[label="' + vm.task + '"]').attr('value'));
+      $('.company_assigned_select_box').val($('option[label="' + vm.company + '"]').attr('value'));
+      $('.task_select_box').trigger("chosen:updated");
+      $('.company_assigned_select_box').trigger("chosen:updated");
       modal.style.display = 'block';
     };
     closeBtn.onclick = function() {
-      modal.style.display = 'none';
-      vm.currentIndex = -1;
+      vm.closeModal();
     };
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
       if (event.target === modal) {
-        modal.style.display = 'none';
+        vm.closeModal();
       }
+    };
+    vm.closeModal = function() {
+      modal.style.display = 'none';
+      // Deselect choice 
+      $('.task_select_box')
+        .find('option:first-child').prop('selected', true)
+        .end().trigger('chosen:updated');
+      $('.company_assigned_select_box')
+        .find('option:first-child').prop('selected', true)
+        .end().trigger('chosen:updated');
+      $('.task_select_box').val(0);
+      $('.task_select_box').trigger("chosen:updated");
+      $('.company_assigned_select_box').val(0);
+      $('.company_assigned_select_box').trigger("chosen:updated");
+      vm.currentIndex = -1;
     };
     vm.updateApplication = function(){
       // Update DB.
@@ -73,7 +109,7 @@
       vm.table.destroy();
       vm.createDatatable(vm.taskapplications);
       // Hide modal
-      modal.style.display = 'none';
+      vm.closeModal();
     };
 
     TaskapplicationsService.query(function(data) {
