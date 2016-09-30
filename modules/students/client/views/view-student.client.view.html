@@ -11,8 +11,7 @@
     <label>Profile</label>
     <span data-ng-bind="vm.student.profile"></span>
   </div>
-  <div class="pull-right"
-       data-ng-show="vm.student.isCurrentUserOwner">
+  <div class="pull-right">
     <a class="btn btn-primary"
        data-ui-sref="students.edit({ studentId: vm.student._id })">
       <i class="glyphicon glyphicon-edit"></i>
