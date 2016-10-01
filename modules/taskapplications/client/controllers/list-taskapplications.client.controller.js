@@ -105,7 +105,13 @@
     };
     vm.updateApplication = function(){
       // Update DB.
-      TaskapplicationsService.update(vm.taskapplications[vm.currentIndex]);
+      TaskapplicationsService.update(vm.taskapplications[vm.currentIndex], function (response) {
+        //success function
+        alert("Save successfull");
+      }, function (response) {
+        //error function
+        alert("Save NOT successfull.");
+      });
       // Recreate datatable
       vm.table.destroy();
       vm.createDatatable(vm.taskapplications);
