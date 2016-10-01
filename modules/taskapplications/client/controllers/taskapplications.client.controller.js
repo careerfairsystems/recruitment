@@ -23,8 +23,10 @@
     vm.taskgroup = taskgroupResolve;
     vm.cmphst = 'Company';
     vm.programs = [];
+    
+    vm.isAdmin = vm.user.roles && vm.user.roles.indexOf("admin") >= 0;
 
-    vm.applicationPeriodClosed = true;
+    vm.applicationPeriodClosed = !vm.isAdmin;
     if(vm.applicationPeriodClosed){
       $state.go('taskapplications.closed');
     }
