@@ -70,6 +70,7 @@
       vm.currentIndex = index;
       $scope.current = vm.taskapplications[index];
 
+      console.log("Point:" + $scope.current.point);
       vm.task = $scope.current.assignedTask || 'Not assigned';
       vm.company = $scope.current.assignedCompany || 'Not assigned';
       $('.task_select_box').val($('option[label="' + vm.task + '"]').attr('value'));
