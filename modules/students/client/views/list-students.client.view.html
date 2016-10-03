@@ -2,6 +2,23 @@
   <div class="page-header">
     <h1>Students</h1>
   </div>
+  <hr>
+  <button class="btn btn-default" ng-show="!uploadCsv" ng-click="uploadCsv = true">
+    Load in from CSV
+  </button>
+  <button class="btn btn-danger" ng-show="!uploadCsv" ng-click="deleteAll()">
+    Delete ALL
+  </button>
+  <div ng-show="uploadCsv">
+    <textarea ng-model="csvStudentsText" class="form-control" placeholder="Place csv text here."></textarea>
+    <button class="btn btn-primary" ng-click="loadCsv()">
+      Load
+    </button>
+    <button class="btn btn-default" ng-click="uploadCsv = false">
+      Cancel
+    </button>
+  </div>
+  <hr>
   <div class="list-group">
     <a data-ng-repeat="student in vm.students"
        data-ui-sref="students.view({ studentId: student._id })"
