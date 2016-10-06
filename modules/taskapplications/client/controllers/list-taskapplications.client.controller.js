@@ -187,7 +187,8 @@
           { data: 'attendKickoff' },
           { data: 'email' },
           { data: 'phone' },
-          { data: 'tshirtsize' }
+          { data: 'tshirtsize' },
+          { data: 'foodpref' },
         ]
       });
 
