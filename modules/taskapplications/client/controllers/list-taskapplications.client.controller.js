@@ -189,6 +189,8 @@
           { data: 'phone' },
           { data: 'tshirtsize' },
           { data: 'foodpref' },
+          { data: 'internationalStudent' },
+          { data: 'motivation' },
         ]
       });
 
