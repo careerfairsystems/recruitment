@@ -7,9 +7,9 @@
     .module('taskapplications')
     .controller('TaskapplicationsController', TaskapplicationsController);
 
-  TaskapplicationsController.$inject = ['$scope', '$state', 'Authentication', 'taskapplicationResolve', '$stateParams', 'taskgroupResolve', 'Users', 'CompaniesService', '$timeout'];
+  TaskapplicationsController.$inject = ['$scope', '$state', 'Authentication', 'taskapplicationResolve', '$stateParams', 'taskgroupResolve', 'Users', 'CompaniesService', '$timeout', 'ProgramsService'];
 
-  function TaskapplicationsController ($scope, $state, Authentication, taskapplication, $stateParams, taskgroupResolve, Users, CompaniesService, $timeout) {
+  function TaskapplicationsController ($scope, $state, Authentication, taskapplication, $stateParams, taskgroupResolve, Users, CompaniesService, $timeout, ProgramsService) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -52,18 +52,14 @@
       return 0;
     }
 
+    // Get unique programs.
+    var programsSet = new Set(ProgramsService);
+    vm.programs = Array.from(programsSet);
+
     CompaniesService.query(function (response) {
       vm.companies = response;
       vm.companies.sort(compare);
       vm.displayCompanies = vm.companies;
-      // Get unique programs.
-      vm.companies.forEach(function(c) {
-        c.desiredProgramme.forEach(function (dp){
-          if(vm.programs.indexOf(dp) === -1){
-            vm.programs.push(dp);
-          }
-        });
-      });
       // Angular needs to complete rendering before applying 'chosen'
       $timeout(function () {
         // Chosen methods
