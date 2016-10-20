@@ -54,7 +54,8 @@
 
     // Get unique programs.
     var programsSet = new Set(ProgramsService);
-    vm.programs = Array.from(programsSet);
+    vm.programs = [];
+    programsSet.forEach(v => vm.programs.push(v));
 
     CompaniesService.query(function (response) {
       vm.companies = response;
