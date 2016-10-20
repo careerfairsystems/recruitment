@@ -22,7 +22,6 @@
     vm.save = save;
     vm.taskgroup = taskgroupResolve;
     vm.cmphst = 'Company';
-    vm.programs = [];
     
     vm.isAdmin = vm.user.roles && vm.user.roles.indexOf("admin") >= 0;
 
@@ -55,7 +54,7 @@
     // Get unique programs.
     var programsSet = new Set(ProgramsService);
     vm.programs = [];
-    programsSet.forEach(v => vm.programs.push(v));
+    programsSet.forEach(function(v){ vm.programs.push(v); });
 
     CompaniesService.query(function (response) {
       vm.companies = response;
