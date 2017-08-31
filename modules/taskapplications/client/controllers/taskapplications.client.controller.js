@@ -86,6 +86,7 @@
       vm.taskapplication.email = vm.user.email;
       vm.taskapplication.phone = vm.user.phone;
       vm.taskapplication.foodpref = vm.user.foodpref;
+      vm.taskapplication.user = vm.user._id;
     } else {
       vm.firstname = vm.taskapplication.name.split(' ')[0];
       vm.lastname = vm.taskapplication.name.split(' ')[1];
@@ -102,6 +103,9 @@
       vm.taskapplication.tshirtsize = params.selected;
     });
     $('.my_select_box').on('change', function(evt, params) {
+      if(vm.myProgram) {
+	  params.selected--;
+      }
       vm.myProgram = vm.programs[params.selected];
       updateCompanyList();
       $scope.$apply();

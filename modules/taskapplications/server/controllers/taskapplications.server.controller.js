@@ -18,18 +18,39 @@ var smtpTransport = nodemailer.createTransport(config.mailer.options);
  * Create a Taskapplication
  */
 exports.create = function(req, res) {
-  var taskapplication = new Taskapplication(req.body);
-  //taskapplication.user = req.user;
-
-  taskapplication.save(function(err) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      res.jsonp(taskapplication);
-    }
-  });
+  //var user = req.param.userId
+  //var taskapplication = Taskapplication.find({user: user});
+  //if(!taskapplication) { 
+    console.log(req.body);
+    console.log("user: " + req.body.user);
+    console.log("taskground: " + req.body.taskgroup);
+    Taskapplication.findOne({taskgroup:req.body.taskgroup, user:req.body.user}, function(err, app) {
+	if(err) {
+	    console.log("Error while finding app");
+      	    return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+	    });
+	} else {
+	    var taskapplication = app;
+	    console.log(app);
+    	    if(taskapplication) {
+		taskapplication = _.extend(taskapplication, req.body);
+            } else {
+		taskapplication = new Taskapplication(req.body);
+            }
+	
+  	    taskapplication.save(function(err) {
+    	        if (err) {
+		    console.log("Error while saving");
+      		    return res.status(400).send({
+        	        message: errorHandler.getErrorMessage(err)
+      		    });
+                } else {
+      		    res.jsonp(taskapplication);
+                }
+  	    });
+	}
+    });
 };
 
 /**
@@ -41,7 +62,7 @@ exports.read = function(req, res) {
 
   // Add a custom field to the Article, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
-  taskapplication.isCurrentUserOwner = req.user && taskapplication.user && taskapplication.user._id.toString() === req.user._id.toString() ? true : false;
+  taskapplication.isCurrentUserOwner = (req.user && taskapplication.user && taskapplication.user._id.toString() === req.user._id.toString()) ? true : false;
 
   res.jsonp(taskapplication);
 };

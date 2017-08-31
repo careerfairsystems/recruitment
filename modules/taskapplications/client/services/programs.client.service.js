@@ -51,7 +51,7 @@
                   'Maskinteknik / Mechanical Engineering',
                   'Maskinteknik / Mechanical Engineering',
                   'Medicin och teknik / Biomedical Engineering',
-                  'Lantmäteri / Surveying'];
+                  'Lantmäteri / Surveying'].sort();
     return allPrograms;
   }
 }());
