@@ -25,10 +25,10 @@
     
     vm.isAdmin = vm.user.roles && vm.user.roles.indexOf("admin") >= 0;
 
-    vm.applicationPeriodClosed = !vm.isAdmin;
-    if(vm.applicationPeriodClosed){
-      $state.go('taskapplications.closed');
-    }
+	  //vm.applicationPeriodClosed = !vm.isAdmin;
+    //if(vm.applicationPeriodClosed){
+    //  $state.go('taskapplications.closed');
+    //}
 
 
 
