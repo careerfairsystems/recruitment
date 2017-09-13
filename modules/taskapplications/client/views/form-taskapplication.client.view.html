@@ -94,6 +94,19 @@
             <p class="help-block error-text" ng-message="required">Tshirtsize is required.</p>
           </div>
         </div>
+        <!-- Availability -->
+        <div class="form-group" show-errors>
+          <label class="control-label col-sm-2" for="avail">Tillgänglighet under mässan/Availability during the fair</label>
+          <div class="col-sm-10">
+              <select name="avail" ng-model="avail" class="avail_select_box">
+                <option value="Delvis/Partially">Delvis/Partially</option>
+                <option value="Alltid/Always">Alltid/Always</option>
+              </select>
+          </div>
+          <div ng-messages="vm.form.taskapplicationForm.availability.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Availability is required</p>
+          </div>
+        </div>
         <!-- Driver License -->
         <div class="form-group" show-errors>
           <div class="col-sm-10 col-sm-offset-2">
@@ -216,6 +229,26 @@
             <div ng-show="showCompanies">
               <p ng-repeat="company in vm.displayCompanies">{{ company.name }}</p>
             </div>
+          </div>
+        </div>
+        <!-- Heard about Arkad -->
+        <div class="form-group" show-errors>
+          <label class="control-label col-sm-2" for="heardvia">Var hörde du om Arkad/Where did you first hear about Arkad?</label>
+          <div class="col-sm-10">
+              <select name="heardvia" ng-model="heardvia" class="heardvia_select_box">
+		<option value="Facebook">Facebook</option>
+		<option value="Nyhetsbrev/Newsletter">Nyhetsbrev/Newsletter</option>
+		<option value="Genom en kompis/From a friend">Genom en kompis/From a friend</option>
+		<option value="Arkad event">Arkad event</option>
+		<option value="Kårkampen">Kårkampen</option>
+		<option value="Kårestivalen">Kårestivalen</option>
+		<option value="Nollelördagen">Nollelördagen</option>
+		<option value="Nollesöndagen">Nollesöndagen</option>
+		<option value="Annat/Other">Annat/Option</option>
+              </select>
+          </div>
+          <div ng-messages="vm.form.taskapplicationForm.heardvia.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Heard via is required</p>
           </div>
         </div>
 

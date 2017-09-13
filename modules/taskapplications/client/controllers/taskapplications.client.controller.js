@@ -33,10 +33,17 @@
 
 
     vm.sizes = ['S','M','L','XL','XXL'];
+    vm.avail = ['Alltid/Always', 'Delvis/Partially'];
+    vm.heardvia = ['Facebook', 'Nyhetsbrev/Newsletter', 'Genom en kompis/From a friend', 'Arkad event', 'Kårkampen', 'Kårestivalen', 'Nollelördagen', 'Nollesöndagen', 'Annat/Other'];
     vm.taskapplication.tshirtsize = 'S';
+    vm.taskapplication.availability = 'Delvis/Partially'
+    vm.taskapplication.heardvia = 'Facebook'
 
     // Update view with Model
     $scope.tshirtsize = 'S';
+    $scope.avail = 'Delvis/Partially';
+    $scope.heardvia = 'Facebook';
+
     $scope.driverLicense = vm.taskapplication.driverLicense ? 'yes' : 'no';
     $scope.attendGasque = vm.taskapplication.attendGasque ? 'yes' : 'no';
     $scope.attendKickoff = vm.taskapplication.attendKickoff ? 'yes' : 'no';
@@ -100,6 +107,7 @@
       width: '100%'
     });
     $('.size_select_box').on('change', function(evt, params) {
+      console.log("T-shirt filled")
       vm.taskapplication.tshirtsize = params.selected;
     });
     $('.my_select_box').on('change', function(evt, params) {
@@ -109,6 +117,21 @@
       vm.myProgram = vm.programs[params.selected];
       updateCompanyList();
       $scope.$apply();
+    });
+    $('.avail_select_box').chosen({
+      no_results_text: 'Oops, nothing found!',
+      width: '100%'
+    });
+    $('.avail_select_box').on('change', function(evt, params) {
+      vm.taskapplication.availability = params.selected;
+    });
+    $('.heardvia_select_box').chosen({
+      no_results_text: 'Oops, nothing found!',
+      width: '100%'
+    });
+    $('.heardvia_select_box').on('change', function(evt, params) {
+      console.log("Heard about is filled")
+      vm.taskapplication.heardvia = params.selected;
     });
     vm.chosenCompanies = [];
     $('.company_select_box').on('change', function(evt, params) {

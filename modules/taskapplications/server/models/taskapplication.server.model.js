@@ -56,6 +56,18 @@ var TaskapplicationSchema = new Schema({
     required: 'Please fill the applicants motivation',
     trim: true
   },
+  heardvia: {
+    type: String,
+    default: '',
+    required: 'Please fill in where you heard about arkad',
+    trim: true
+  },
+  availability: {
+    type: String,
+    default: 'Always',
+    required: 'Please fill the applicants availability during arkad',
+    trim: true
+  },
   choices: [{ order: Number, choice: String }],
   internationalStudent: {
     type: Boolean,
@@ -107,6 +119,6 @@ var TaskapplicationSchema = new Schema({
   }
 });
 
-TaskapplicationSchema.index({taskgroup:1, user:1},{unique:true});
+TaskapplicationSchema.index({taskgroup:1, email:1},{unique:true})
 
 mongoose.model('Taskapplication', TaskapplicationSchema);

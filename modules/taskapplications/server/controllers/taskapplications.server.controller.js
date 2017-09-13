@@ -22,9 +22,9 @@ exports.create = function(req, res) {
   //var taskapplication = Taskapplication.find({user: user});
   //if(!taskapplication) { 
     console.log(req.body);
-    console.log("user: " + req.body.user);
+    console.log("user: " + req.body.email);
     console.log("taskground: " + req.body.taskgroup);
-    Taskapplication.findOne({taskgroup:req.body.taskgroup, user:req.body.user}, function(err, app) {
+    Taskapplication.findOne({taskgroup:req.body.taskgroup, email:req.body.email}, function(err, app) {
 	if(err) {
 	    console.log("Error while finding app");
       	    return res.status(400).send({

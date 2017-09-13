@@ -178,6 +178,8 @@
           { data: 'assignedCompany' },
           { data: 'program' },
           { data: 'year' },
+	  { data: 'heardvia' },
+	  { data: 'availability' },
           { data: 'choice1' },
           { data: 'choice2' },
           { data: 'choice3' },
