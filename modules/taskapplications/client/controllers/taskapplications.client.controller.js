@@ -14,6 +14,7 @@
 
     vm.authentication = Authentication;
     vm.user = vm.authentication.user;
+    console.log("user is" + vm.user);
     vm.taskapplication = taskapplication;
     vm.createMode = !vm.taskapplication._id;
     vm.error = null;
@@ -23,6 +24,16 @@
     vm.taskgroup = taskgroupResolve;
     vm.cmphst = 'Company';
     
+    if(!vm.user) {
+	$state.go('authentication.signin').then(function(){
+	    storePreviousState(toState, toParams);
+	});
+    }
+    vm.authentication = Authentication;
+    vm.user = vm.authentication.user;
+    if(!vm.user) {
+        console.log("Still no user");
+    }
     vm.isAdmin = vm.user.roles && vm.user.roles.indexOf("admin") >= 0;
 
 	  //vm.applicationPeriodClosed = !vm.isAdmin;
