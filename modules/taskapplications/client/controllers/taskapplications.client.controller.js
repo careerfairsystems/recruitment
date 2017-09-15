@@ -14,7 +14,6 @@
 
     vm.authentication = Authentication;
     vm.user = vm.authentication.user;
-    console.log("user is" + vm.user);
     vm.taskapplication = taskapplication;
     vm.createMode = !vm.taskapplication._id;
     vm.error = null;
@@ -31,9 +30,6 @@
     }
     vm.authentication = Authentication;
     vm.user = vm.authentication.user;
-    if(!vm.user) {
-        console.log("Still no user");
-    }
     vm.isAdmin = vm.user.roles && vm.user.roles.indexOf("admin") >= 0;
 
 	  //vm.applicationPeriodClosed = !vm.isAdmin;
@@ -118,16 +114,13 @@
       width: '100%'
     });
     $('.size_select_box').on('change', function(evt, params) {
-      console.log("T-shirt filled")
       vm.taskapplication.tshirtsize = params.selected;
     });
     $('.my_select_box').on('change', function(evt, params) {
-      if(vm.myProgram) {
-	  params.selected--;
-      }
       vm.myProgram = vm.programs[params.selected];
       updateCompanyList();
       $scope.$apply();
+      $('.my_select_box').trigger('chosen:updated');
     });
     $('.avail_select_box').chosen({
       no_results_text: 'Oops, nothing found!',
@@ -141,7 +134,6 @@
       width: '100%'
     });
     $('.heardvia_select_box').on('change', function(evt, params) {
-      console.log("Heard about is filled")
       vm.taskapplication.heardvia = params.selected;
     });
     vm.chosenCompanies = [];
@@ -153,7 +145,6 @@
         var position = vm.chosenCompanies.indexOf(vm.companies[params.deselected]);
         vm.chosenCompanies.splice(position, 1);
       }
-      console.log(vm.chosenCompanies);
     });
 
 
