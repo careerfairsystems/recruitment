@@ -119,6 +119,6 @@ var TaskapplicationSchema = new Schema({
   }
 });
 
-TaskapplicationSchema.index({taskgroup:1, email:1},{unique:true})
+TaskapplicationSchema.index({taskgroup:1, user:1},{unique:true})
 
 mongoose.model('Taskapplication', TaskapplicationSchema);
