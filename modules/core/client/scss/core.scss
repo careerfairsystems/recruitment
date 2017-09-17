@@ -1,4 +1,4 @@
-$white: #FFFFFF;
+$white: #000000;
 $gray: gray;
 $black: #333;
 $break-mobile: 768px;
@@ -6,8 +6,13 @@ $menu-black: rgba(30,30,30,0.95);
 
 body {
   //background: #002B64;
-  background: url("/modules/core/client/img/bakground-image.png");
+  background: url("/modules/core/client/img/blurkarhuset.jpg");
   background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
 }
 
 .navbar nav {
