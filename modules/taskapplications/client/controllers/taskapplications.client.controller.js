@@ -137,10 +137,6 @@
       vm.taskapplication.heardvia = params.selected;
     });
     vm.chosenCompanies = [];
-    $('.company_select_box').chosen({
-      no_results_text: 'Oops, nothing found!',
-      width: '100%'
-    });
     $('.company_select_box').on('change', function(evt, params) {
       var element = $('.company_select_box');
       if(params.selected){
