@@ -1,6 +1,10 @@
 body {
-  background: url("/modules/core/client/img/bakground-image.png");
-  background-attachment: fixed; }
+  background: url("/modules/core/client/img/blurkarhuset.jpg");
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; }
 
 @media screen and (max-width: 768px) {
   .navbar nav {
@@ -9,7 +13,7 @@ body {
       background: none;
       color: #4a87ff; }
     .navbar nav .dropdown-menu > li > a {
-      color: #FFFFFF; } }
+      color: #000000; } }
 
 section.container {
   background-color: rgba(230, 230, 230, 0.8);
@@ -21,13 +25,13 @@ section.container {
   color: #333; }
 
 .navbar-nav > li > a {
-  color: #FFFFFF;
+  color: #000000;
   text-shadow: none; }
   .navbar-nav > li > a:focus, .navbar-nav > li > a:hover, .navbar-nav > li > a:link, .navbar-nav > li > a:active {
     color: #333; }
 
 .navbar-brand {
-  color: #FFFFFF;
+  color: #000000;
   text-shadow: none; }
   .navbar-brand:focus {
     text-shadow: none;
@@ -37,7 +41,7 @@ section.container {
     color: gray; }
 
 .icon-bar {
-  background-color: #FFFFFF; }
+  background-color: #000000; }
 
 .content {
   margin-top: 50px; }
