@@ -13,7 +13,7 @@
 
 
     vm.companies = CompaniesService.query();
-    vm.companyUrl = 'http://dv.jexpo.se/exhibitors?namespace=arkad_test&limit=0&sort=name';
+    vm.companyUrl = 'https://api.jexpo.se/exhibitors?namespace=arkad&limit=0';
 
     vm.fetchedCompanies = [];
     
