@@ -41,7 +41,7 @@
 
     vm.sizes = ['S','M','L','XL','XXL'];
     vm.avail = ['Alltid/Always', 'Delvis/Partially'];
-    vm.heardvia = ['Facebook', 'Nyhetsbrev/Newsletter', 'Genom en kompis/From a friend', 'Arkad event', 'Kårkampen', 'Kårestivalen', 'Nollelördagen', 'Nollesöndagen', 'Annat/Other'];
+    vm.heardvia = ['Facebook', 'Nyhetsbrev/Newsletter', 'Genom en kompis/From a friend', 'ARKAD event', 'Kårkampen', 'Kårestivalen', 'Nollelördagen', 'Nollesöndagen', 'Annat/Other'];
     vm.taskapplication.tshirtsize = 'S';
     vm.taskapplication.availability = 'Delvis/Partially'
     vm.taskapplication.heardvia = 'Facebook'
