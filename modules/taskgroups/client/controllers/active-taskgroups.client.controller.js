@@ -26,15 +26,16 @@
     };
 
     $scope.setActive = function(taskgroup) {
-      angular.forEach(taskgroups, function(tg) {
-        if(taskgroup.name === tg.name) {
-          tg.active = true;
-          TaskgroupsService.update(tg);
-        } else {
-          tg.active = false;
-          TaskgroupsService.update(tg);
-        }
-      });
+			taskgroup.active = !taskgroup.active ? true : false;
+			TaskgroupsService.update(taskgroup);
+			if(taskgroup.active) {
+				angular.forEach(taskgroups, function(tg) {
+      	  if(!(taskgroup.name === tg.name)) {
+      	    tg.active = false;
+      	    TaskgroupsService.update(tg);
+      	  }
+      	});
+			}
     };
   }
 })();
