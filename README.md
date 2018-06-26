@@ -21,7 +21,7 @@ nvm install 6 # installs node version 6
 nvm use 6 # switch to node version 6
 ```
 
-Then follow the steps in Prerequire
+Then follow the steps in [Prerequisites](#prerequisites)
 
 ## MEAN.JS
 [![MEAN.JS Logo](http://meanjs.org/img/logo-small.png)](http://meanjs.org/)
