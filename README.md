@@ -1,42 +1,27 @@
-## Important installation notes, for atleast Linux!!
+## Important installation notes
 
-This MeanJs application do not work with the current version of node. Instead use node version 6.11. To do this follow the steps bellow, atleast for 
+This MeanJs application do not work with node version > 6. Instead downgrade to node version 6, and follow the steps below.
 
 ```bash
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 ```
 
+or if you are using Mac you can skip the `nvm` steps and do the following:
+
+```bash
+brew install node@6
+brew link --overwrite node@6
+```
+
 Nvm is the Node Version Manager and enables you to choose different versions of node.
 
-To list installed versions of node do the following
-
 ```bash
-nvm ls
+nvm ls # lists node versions
+nvm install 6 # installs node version 6
+nvm use 6 # switch to node version 6
 ```
 
-If you dont have 6.11 install it by 
-
-```bash
-nvm install 6.11
-```
-
-and then use it by 
-
-```bash
-nvm use 6.11
-```
-
-Now you can either go through the entire guide and maybe get it running with npm start, otherwise you can use grunt. 
-
-```bash
-npm install -g grunt-cli
-```
-
-and then run the application by 
-
-```bash
-grunt --force
-```
+Then follow the steps in Prerequire
 
 ## MEAN.JS
 [![MEAN.JS Logo](http://meanjs.org/img/logo-small.png)](http://meanjs.org/)
@@ -80,9 +65,12 @@ $ npm install -g grunt-cli
 $ gem install sass
 ```
 
+* Run Grunt - You're going to run the application with `--force` to ignore errors which will occur:
+
 ```bash
-$ npm install -g grunt-cli
+grunt --force
 ```
+
 
 * Gulp - (Optional) You may use Gulp for Live Reload, Linting, and SASS or LESS.
 
